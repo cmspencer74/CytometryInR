@@ -1,0 +1,499 @@
+---
+title: "02 - File Paths"
+author: "David Rach"
+date: 02-09-2026
+format: html
+toc: true
+toc-depth: 5
+---
+
+![](/images/WebsiteBanner.png)
+
+::: {style="text-align: right;"}
+[![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+:::
+
+Welcome to the second week of [Cytometry in R](/Schedule.qmd)! This week we will learn about file.path, namely, how to communicate to our computer (and R) where various files are stored. 
+
+:::{.callout-important}
+Before getting started, please make sure you have completed the creating a [GitHub](/course/00_GitHub/index.qmd) and [Workstation Setup](/course/00_WorkstationSetup/index.qmd) walk-throughs, since we will begin where they left off once the required software was successfully installed. Having read-through how to use [version control](/course/00_Git/index.qmd) using Git will additionally be useful. 
+:::
+
+# Background
+
+```{r}
+#| include: FALSE
+library(BiocStyle)
+```
+
+When flow cytometrist first start learning how to code, we tend to think big picture: "I want to take my files, normalize them, cluster them, analyze them, and finally plot them". When we first start writing code, we tend to plan what we will write in similarly broad strokes. 
+
+Our computers by contrast "think" in small incremental steps: "First locate this folder, list the files present, select these specific ones, import them into R, load the normalization package, pass the first file in, etc.". These steps when combined algorithmically add up to form the bigger picture.
+
+The challenge when first starting to learn how to code is developing a coding mindset in which we think not in broad strokes, but about what the next step will be programmatically. 
+
+<br>
+
+---
+
+We will start working on our own "coding mindsets" by working with file paths, as they communicate to our computer where to find our experiment files, and tend to be one of the early points of conflict and frustration. In the process, we will also cover additional concepts of R programming generally, including how to create/name variables, and look up the class/type of a particular object. 
+
+<br>
+
+---
+
+# Set Up
+
+Before we begin, let's make sure you get the data needed for today transferred to your local computer, and then get the .fcs files copied over from there to your own working project folder. This is the process you will repeat each week throughout the course. 
+
+## New Repository
+
+First off, login to your GitHub account. Once there, you will select the options to create a new repository (similar to what you did during [Using GitHub](/course/00_GitHub/index.qmd#github-repository))
+
+![](images/0001_NewRepo.png)
+
+<br> 
+
+---
+
+For this week, let's set this new repository up as a private repository, and call it Week2. This will keep things consistent with the file.paths we will be showing in the examples. 
+
+![](images/0002_PrivateRepo.png)
+
+<br> 
+
+---
+
+Once the new repository has been created, copy the URL. 
+
+![](images/0003_Url.png)
+
+<br> 
+
+---
+
+Next, open up Positron, set the interpreter to use R, and then select the option to bring in a "New Folder from Git".
+
+![](images/0004_NewGit.png)
+
+<br> 
+
+---
+
+Paste in your new repository's url. Additionally, if you want to match file.paths shown in the examples, set your storage location to your local Documents folder (please note the start of the file.path will look differently depending on whether you are on Windows, MacOS, or Linux).
+
+![](images/0005_SaveDocuments.png)
+
+<br> 
+
+---
+
+Your new repository will then be imported from GitHub. Once this is done, create two subfolders (data and images) and a new .qmd file (naming it filepaths.qmd).
+
+![](images/0006_BasicInfrastructure.png)
+
+<br> 
+
+---
+
+With this done, return to GitHub and open your [forked version](/course/00_GitHub/index.qmd#forking-cytometryinr) of the CytometryInR course folder. If you haven't yet done so, click on [sync](/course/00_Homeworks/index.qmd#sync-your-fork) to bring in this week's code and datasets. 
+
+![](images/0008_Sync.png)
+
+<br> 
+
+---
+
+Returning to Positron, you will need to switch Project Folders, switching from Week2 over to CytometryInR.
+
+![](images/0007_SwitchFolders.png)
+
+<br> 
+
+---
+
+Once CytometryInR project folder has opened, you will need to [pull](/course/00_Git/index.qmd#pull) in the new data from GitHub to your local computer. 
+
+![](images/0007_PullCytometryInR.png)
+
+<br> 
+
+---
+
+Once this is done, you will see within the course folder, containing this weeks folder (02_FilePaths). Within it there is a data folder with .fcs files. To avoid causing conflicts when bringing in next week's materials, you will want to manually copy over these .fcs files (via your File Explorer) to the data folder within your "Week2" Project Folder. 
+
+![](images/0009_Copy.png)
+
+<br> 
+
+---
+
+When you reopen your Week2 project folder in Positron, you should now be able to see the .fcs files within the data folder. Next, from the action bar on the far left, select the Source Control tab. Stage all the changes (as was done in [Using Git](/course/00_Git/)), and write a short commit message. 
+
+![](images/0010_Commit.png)
+
+<br> 
+
+---
+
+With these files now being tracked by version control, push (ie. send) your changes to GitHub so that they are remotely backed up.
+
+![](images/0011_Push.png)
+
+<br> 
+
+---
+
+And with this setup complete, you are now ready to proceed. Remember, run code and write notes in your working project folder (Week2 or otherwise named) to avoid conflicts next week in the CytometryInR folder when you are trying to bring in the Week #3 code and datasets. 
+
+<br> 
+
+---
+
+# Walk Through
+
+## Working Directory
+
+Now that we are back in our Week2 folder, let's start by seeing our current location similarly to how our computer perceives it. 
+
+We will use  `getwd()` function (ie. get working directory) to return the location of the folder we are currently inside of. For example, when generating the website from the index.qmd file in 02_FilePaths, we see the following
+
+```{r}
+getwd()
+```
+
+This location is the **Working Directory**, as viewed from the computer's perspective.
+
+<br>
+
+---
+
+## Directories
+
+Within this working directory, we have a variety of project folders and files related to the course. We can see the folders that are present using the `list.dirs()` function. 
+
+```{r}
+list.dirs(path=".", full.names=FALSE, recursive=FALSE)
+```
+
+Within this `list.dirs()` function, we are specifying two arguments with which we will be working with later today, *full.names* and *recursive*. For now, lets set their arguments to FALSE, which means they conditions they implement are inactive (turned off). 
+
+<br>
+
+---
+
+The path argument is currently set to ".", which is a stand-in for the present directory. In R, if an argument is not specified directly, it is inferred based on an order of expected arguments. Thus, if not present, we could still get the same output as seen before. 
+
+```{r}
+list.dirs(full.names=FALSE, recursive=FALSE)
+```
+
+<br>
+
+---
+
+Among the list of folders, we have two *hidden folders* (denoted by the "." in front of the folder name), ie the ".git" and ".quarto" folders. If you are working within Positron, the hidden quarto file is shown in a lighter gray color. 
+
+![](images/02_HiddenFolder.png)
+
+The three not-hidden folders are also listed. We will see how to navigate these in a second. 
+
+<br>
+
+---
+
+## Variables
+
+Before exploring file paths, we need to have some basic R code knowledge that we can use to work with them. Within R, we have the ability to assign particular values (be they character strings, numbers or logicals) to objects (ie. variables) that can be used when called upon later. 
+
+For example:
+
+```{r}
+#| eval: FALSE
+WhatDayDidIWriteThis <- "Saturday"
+```
+
+In this case, the variable name is what the assignment arrow ("<-") is pointing at. In this case, WhatDayDidIWriteThis
+
+<br>
+
+---
+
+When we run this, we create a variable, that will appear within the right-sidebar.
+
+```{r}
+#| eval: TRUE
+WhatDayDidIWriteThis <- "Saturday"
+```
+
+<br>
+
+---
+
+These variables can subsequently be retrieved by printing (ie. running) the name of the variable
+
+```{r}
+WhatDayDidIWriteThis 
+```
+
+<br>
+
+---
+
+You can create variables with almost any name you can think of
+
+```{r}
+TopSecretMeetingDay <- "Saturday"
+```
+
+<br>
+
+---
+
+With a few exceptions. R doesn't play well with spaces:
+
+```{r}
+#| error: TRUE
+Top Secret Meeting Day <- "Saturday"
+```
+
+<br>
+
+---
+
+But does play well with underscores:
+
+```{r}
+Top_Secret_Meeting_Day <- "Saturday"
+```
+
+<br>
+
+---
+
+The above (with individual words separated by _) is collectively known as snake case. The alternate way to help delineate variable names is "camelCase", with first letter of each word being capitalized (seen in the previous example). 
+
+[](https://pbs.twimg.com/media/FxVpCpqaIAE_iqU?format=jpg&name=4096x4096)
+
+<br>
+
+---
+
+```{r}
+TopSecretMeetingDay
+```
+
+<br>
+
+---
+
+You can overwrite a Variable name by assigning a different value to it:
+
+```{r}
+TopSecretMeetingDay <- "Monday"
+```
+
+```{r}
+TopSecretMeetingDay
+```
+
+<br>
+
+---
+
+You can also remove individual variables via the `rm` function
+
+```{r}
+rm(Top_Secret_Meeting_Day)
+```
+
+<br>
+
+---
+
+Or if trying to remove all, via the right sidebar
+
+![](images/10_RemoveVariables.png)
+
+
+<br>
+
+---
+
+In the prior case, we are creating a variable that is a "string" of character values, due to our use of "" around the word. We can see this when we use the `str()` function. 
+
+```{r}
+Fluorophores <- "FITC"
+str(Fluorophores)
+```
+
+The "chr" in front denotating that Fluorophores contains a character string. 
+
+<br>
+
+---
+
+This could also be retrieved using the `class()` function. 
+
+```{r}
+class(Fluorophores)
+```
+
+<br>
+
+---
+
+Alternatively, we could assign a numeric value to a variable
+
+```{r}
+Fluorophores <- 29
+str(Fluorophores)
+```
+
+Which returns "num", ie. numeric.
+
+<br>
+
+---
+
+We can also specify a logical (ie. True or FALSE) to a particular object
+
+```{r}
+IsPerCPCy5AGoodFluorophore <- FALSE
+str(IsPerCPCy5AGoodFluorophore)
+```
+
+Which returns logi in front, denoting this variable contains a logical value. 
+
+<br>
+
+---
+
+Last week, when we were installing `dplyr`, the reason that installation failed was `install.packages()` expects a character string. However, when we left off the "", it looked within our local environments created variables for the dplyr variable, couldn't find it, and thus failed. 
+
+We could of course, have assigned a character value to a variable name, and then used that variable name, which would have worked. 
+
+```{r}
+#| eval: FALSE
+
+PackageToInstall <- "dplyr"
+
+install.packages(PackageToInstall)
+```
+
+<br>
+
+---
+
+## Indexing
+
+Not all variables contain single objects. 
+
+For example, we can modify Fluorophores and add additional entries:
+
+```{r}
+Fluorophores <- c("BV421", "FITC", "PE", "APC")
+str(Fluorophores)
+```
+
+The c stands for concatenate. It concatenates the objects into a larger object, known as a vector. 
+
+In this case, you notice in addition to the specification the values are characters, we get a [1:4], denoting four objects are present. 
+
+<br>
+
+---
+
+We can similarly retrieve this information using the `length()` function
+
+```{r}
+length(Fluorophores)
+```
+
+<br>
+
+---
+
+When multiple objects are present, we can specify them individidually by providing their index number within square brackets []. 
+
+```{r}
+Fluorophores[1]
+```
+
+<br>
+
+---
+
+```{r}
+Fluorophores[3]
+```
+
+<br>
+
+---
+
+Or specify in sequence using a colon (:)
+
+```{r}
+Fluorophores[3:4]
+```
+
+<br>
+
+---
+
+Or if not adjacent, reusing `c` within the square brackets
+
+```{r}
+Fluorophores[c(1,4)]
+```
+
+<br>
+
+---
+
+We will revisit these concepts throughout the course, with what we have covered today, this will help us create file.paths and select fcs files that we want to work with via index number. 
+
+# Your Turn
+
+## File Paths
+
+Editing a Quarto bug, this segment will be available later today - David
+
+
+# Wrap-Up
+
+In this session, we started to learn about how variables (objects) are created in R using the assignment arrow, how they are named, and the general structure (character, numeric, logical) that they are represented as. We also learned about working directories, file.paths and how to locate files of interest. 
+
+This will prove valuable in the next several weeks when working with .fcs files, as the majority of functions we will use for Bioconductor project R packages need file.paths to locate both .fcs files as well as .csv files that contain metadata. 
+
+One of the most frequent errors that beginners encounter when trying to load in .fcs files into the `flowCore` package is not providing the full file.path to the .fcs file of interest. 
+
+Next week, having installed the required R packages, and learned a little about variables and file.paths, we will dive into our first cytometry focused session. We will be cracking open an .fcs file and exploring how things are stored within. In the process of seeing how the file contents are organized, we will continue to learn and practice how to create variables, and general object structure types within R. Until then, have a wonderful week!
+
+![](images/Week2Exit.jpg)
+
+# Additional Resources
+
+[Demystifying File Paths in R: Navigate Nested Folders with Dr. Padilla](https://youtu.be/yeiT5Kj_uG8?si=UySsolzbTxbgGMF6)
+
+# Take-home Problems
+
+:::{.callout-tip title="Problem 1"}
+Plug in an external hard-drive or USB into your computer. Manually, create a folder within called "TargetFolder". Try to programmatically specify the file path to identify the folders and files present on your external drive. Then, try to copy your .fcs files from their current folder on your desktop to the TargetFolder on your drive using R. Remember, just copy, no deletion, you need to walk before you can run :D
+:::
+
+:::{.callout-tip title="Problem 2"}
+In this session, we used list.files with the full.names argument, as well as the `basename()` function to identify specific files. But what if you wanted a particular directory. Run list.files with recursive set to TRUE, and then search online to find an R function that would retrieve the "" directory. 
+:::
+
+:::{.callout-tip title="Problem 3"}
+R packages often come with internal datasets, that are typically used for use in the help documentation examples. These can be accessed through the use of the `system.file()` function. See an example below. 
+
+Using what we have learned about file.path navigation, search your way down the file.directory of the `flowSOM` and `flowWorkspace` packages, and identify any .fcs files that are present for use in the documentation. 
+:::
+
+
+::: {style="text-align: right;"}
+[![AGPL-3.0](https://www.gnu.org/graphics/agplv3-with-text-162x68.png)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+:::
