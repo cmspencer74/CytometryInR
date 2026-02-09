@@ -13,9 +13,13 @@ toc-depth: 4
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 :::
 
+For the YouTube livestream recording, see [here](https://www.youtube.com/live/WP6JMzlj6B4?si=P1EE1NzLO8i5L0cE)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WP6JMzlj6B4?si=rdVlnMjSPkpBbxmr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 For screen-shots slides, click [here](/course/00_WorkstationSetup/WindowsSlides.qmd)
 
-For the YouTube narration, click [here](https://www.youtube.com/@CytometryInR)
+
 
 This is the software installation walkthrough for those whose computers are running Windows. Based on our pre-course interest form, you make up the majority of course participants. 
 
@@ -404,6 +408,12 @@ With the license accepted, you will be able to select your operating system. In 
 ![](images/Windows/26_UserInstall.png)
 
 <br>
+
+---
+
+Please note, if you are using a Windows computer with an ARM based chip (like is the case with Snapdragons), you will need to download the installed from the Positron's GitHub [Release Page](), as they are still testing some features. 
+
+![](images/Windows/WindowsArm.png)
 
 ---
 

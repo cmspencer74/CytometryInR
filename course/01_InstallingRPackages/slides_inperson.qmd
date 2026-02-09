@@ -1,0 +1,1661 @@
+---
+title: "01 - Installing R Packages"
+author: "David Rach"
+date: 02-01-2026
+format:
+  revealjs:
+    theme: default
+    slide-number: true
+    incremental: true
+page-layout: full
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+![](/images/WebsiteBanner.png)
+
+::: {.callout-tip title="."}
+
+Welcome to the first week of [Cytometry in R](/Schedule.qmd)! This week we will be diving into how R packages work, and the how to go about installing them. 
+
+:::
+
+# Background
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+During [Workstation Setup](/course/00_WorkstationSetup/), you installed the R software to your local computer. R as a [programming language](https://en.wikipedia.org/wiki/R_(programming_language)) that started up in the 1990s. While its original focus was on statistics, it is now widely used in various fields thanks to contributions of many open-source developers over the years.  
+
+:::
+:::
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+This expanded reach is in part due to the ability to create [**R packages**](https://en.wikipedia.org/wiki/R_package), that encapsulate additional [**functions**](https://adv-r.hadley.nz/functions.html#function-fundamentals), that can do new things beyond what the original software (ie. **base R**) was capable of doing. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Currently, there are [thousands](https://cran.r-project.org/web/packages/available_packages_by_name.html) of R packages available. Furthermore, there is a vibrant [community](https://www.reddit.com/r/rstats/) of individuals that help maintain and document how to use these packages, which has helped sustain and grow the R ecosystem over the last couple [decades](https://youtu.be/gjpNEVcG1nU?si=rcEBSc7AnAsgsAy2). 
+
+:::
+:::
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Regardless if you are working with [flow cytometry](https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry), or in [ecology](https://drmattg.github.io/REcol-verse/), or in [econometrics](https://www.econometrics-with-r.org/1-introduction.html), or [political science](https://github.com/fivethirtyeight/data), a lot of the analysis and visualizations that you see in publications often involve R. 
+
+:::
+:::
+
+---
+
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Expanding on this concept, a new R package can be made up of new code (primarily in the form of tools (ie. **functions**) that do a particular useful things) that is entirely self-contained, or reuse functions present in existing R packages to help make something new. When an R package relies on a function from another R package, it needs the other R package to be installed in order for everything to work properly. This is known as a package **dependency**. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+The three main locations for R packages from are **[CRAN](https://cran.r-project.org/)** (containing 23069 packages), **[Bioconductor](https://www.bioconductor.org/)** (containing 2361 packages), and individual R packages hosted by their developers via **[GitHub](https://github.com/trending/r)**.
+
+:::
+:::
+
+---
+
+
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+The process of installing R packages will vary a bit depending on which repository the respective R package is in.  For beginners, this often prooves to be a pain-point, as they will attempt to install an R package using one set of installation commands, only to get an error (because the R package is not in that repository). 
+
+:::
+:::
+
+---
+
+# Getting Started
+
+## Checking for Loaded Packages
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+For the contents (ie. the functions) of an R package to be available for your computer to use, they must first be activated (ie. loaded) into your local environment. We will first learn how to check what R packages are currently active.
+
+:::
+:::
+
+---
+
+### Accessing Help Documentation
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Within your own index.qmd (or a new .qmd file that you created), type out/copy-paste the following `sessionInfo()` function
+
+:::
+:::
+
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+sessionInfo()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+If you hover over the line of code within Positron, you will glimpse the help file for the particular function you are hovering over. 
+
+:::
+:::
+
+---
+
+![](images/02_HelpHover.png)
+
+---
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+?sessionInfo()
+```
+
+:::
+
+---
+
+![](images/03_QuestionMark.png)
+
+---
+
+### sessionInfo()
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Within your .qmd file, let's go ahead and run the following code-block:
+
+:::
+:::
+
+
+::: {.fragment}
+
+```{r}
+#| echo: TRUE
+sessionInfo()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+The outputs that get returned by `sessionInfo()` will vary a bit depending on your computer's [operating system](/course/00_WorkstationSetup/), and the version of R you have installed. 
+
+For today, let's focus on the last two elements of the output:
+
+:::
+:::
+
+---
+
+![](images/06_sessionInfo.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+The [R software](https://www.r-project.org/) itself is made up of several **base R packages**, that are loaded automatically. These contain everything you need to read, write and run R code on your computer. You can see these packages are the stats, graphics, grDevices, utils, datasets, methods and base packages. 
+
+As we install additional R packages and load them using the `library()` function throughout this session, sporadically re-run `sessionInfo()` to see how this list of R packages changes. 
+
+:::
+:::
+
+---
+
+## Installing from CRAN
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We will start by installing R packages that are part of the [CRAN](https://cran.r-project.org/) repository. This is the main R package repository, being part of the broader R software project. In the context of this course, R packages that work primarily with general data structure (rows, columns, matrices, etc.) or visualizations will predominantly be found within this repository. 
+
+These include the [tidyverse](https://tidyverse.org/) packages. These packages have collectively made R easier to use by smoothing out some of the rough edges of base R, which is why R has seen major growth within the last decade. We will be installing several of these R packages today.  
+
+:::
+:::
+
+---
+
+### dplyr
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Our first R package we will install during this session is the [dplyr](https://dplyr.tidyverse.org/) package. Since it is hosted on the CRAN repository, to install it, we will need to use the CRAN-specific installation function `install.packages()`. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+?install.packages()
+```
+
+:::
+
+---
+
+![](images/07_InstallPackages.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+For the `install.packages()` function, we place within the () the name of the R package from CRAN that we wish to install.
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+install.packages("dplyr")
+```
+
+:::
+
+---
+
+:::{.callout-tip}
+
+A usual struggle point for beginners is that install.packages() requires " " to be placed around the package name. Forgetting them results in the error that we see below. 
+
+:::
+
+
+::: {.fragment}
+
+```{r}
+#| error: TRUE
+
+install.packages(dplyr)
+```
+
+:::
+
+---
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+install.packages("dplyr")
+```
+
+:::
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Go ahead and click on "Run Cell" next to your code-block, to install the `dplyr` R package. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+When a package starts to install, you will see your console start to display text resembling that seen in the image below (varying a bit depending on your computers operating system).
+
+:::
+:::
+
+---
+
+![](images/08_InstallScript.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Within this opening scrawl, you will see the location on your computer the R package is being installed to, as well as the file location for the R package being retrieved on CRAN. 
+
+If the package is successfully located, your computer will proceed to first download, then unpack (ie. unzip) it, before attempting to install to the target folder. 
+
+:::
+:::
+
+---
+
+![](images/09_InstallScript2.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+The final steps of the installation process involved various steps to verify everything was copied successfully, the help documentation assembled, and that the R package is capable of being loaded. If this is the case, you will see the "Done" line appear, as well as a mention where the original downloaded source package files has been stashed (usually a temp folder). 
+
+:::
+:::
+
+---
+
+### Attaching packages via library()
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+If an R package has been installed successfully, we are now able to load it (ie. make it's functions available) to our local environment using the `library()` function. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+?library()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Unlike `install.packages()`, where we needed "" around the package name, the `library()` function does not require "" around the package name. Let's go ahead and load in `dplyr`, making its respective functions to our local environment. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+library(dplyr)
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+From the output, we can see that `dplyr` has been attached. There are also a couple functions within dplyr that have identical names to functions within the stats and base packages. To avoid confusion, these 6 functions are masked, which is why we get the additional messages. 
+
+With `dplyr` now loaded via the `library()` call, let's check `sessionInfo()` to see what has changed. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+sessionInfo()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Similar to what was seen for the base R packages, `dplyr` is now attached. This means we should theoretically now have access to all its functions. We can verify this by seeing if we can look up the `dplyr` packages `select()` function and it's respective help page.
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+?select
+```
+
+:::
+
+---
+
+![](images/10_Attached.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Since its parent package has been attached to our local environment (via the `library()` call), we can see `dplyr` functions appear as suggestions as we begin to type.
+
+By contrast, is we check for the `ggplot()` function from the ggplot2 package (which we haven't yet installed or attached via `library()`), no suggestions will pop up. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+
+```{r}
+?ggplot
+```
+
+:::
+
+---
+
+### Common Issues
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+As previously mentioned, [CRAN](https://cran.r-project.org/) is the main repository for R packages. But what if we tried to install an R package that is only found on [Bioconductor](https://www.bioconductor.org/) or via [GitHub](https://github.com/trending/r) using the `install.packages()` function?
+
+To see what occurs, let's try installing the `PeacoQC` [package](https://www.bioconductor.org/packages/release/bioc/html/PeacoQC.html) (which is found on Bioconductor). 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+install.packages("PeacoQC")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+As you can see, the initial warning message suggest that `PeacoQC` is not available for your version of R. When I first started trying to learn R on my own during COVID, this particular message was the bane of my existence  and I couldn't figure out what was going on. 
+
+This is just a default warning message, that would apply for both a package having a version mismatch, but also shown when trying to install packages that are not found on CRAN.
+
+:::
+:::
+
+---
+
+## Installing from Bioconductor
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+**[Bioconductor](https://www.bioconductor.org/)** is the second R package repository we will be working with throughout the course. While it contains far fewer packages than CRAN, it contains packages that are primarily used by the biomedical sciences. Following this [link](https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry) you can find it's current flow and mass cytometry R packages.
+
+Bioconductor R packages differ from CRAN R packages in a couple of ways. Bioconductor has different [standards](https://contributions.bioconductor.org/) for acceptance than [CRAN](https://r-pkgs.org/release.html). They usually contain interoperable object-types, put more effort into documentation and continous testing to ensure that the R package remains functional across operating systems. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+To install an R package that is located on [Bioconductor](https://www.bioconductor.org/), we first need to install the `BiocManager` package from CRAN. This package will allow us to install Bioconductor packages from their respective repository. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+install.packages("BiocManager")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Once BiocManager is installed, we can attach it to our local environment using the `library()` function
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+library(BiocManager)
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+When loaded, you will see an output showing the current Bioconductor and R versions. 
+
+We can then use BiocManager's `install()` function to go back and install `PeacoQC()`.
+
+:::
+:::
+
+:::{.callout-tip}
+
+As always, don't forget the "" when running an `install()` command. 
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+?install()
+```
+
+:::
+
+::: {.fragment}
+
+```{r}
+install("PeacoQC")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We see a similar opening sequence of installation steps as what we saw when installing the `dplyr` package from CRAN. However, in this case, several package dependencies (rjson, GlobalOptions, etc.) are present. Consequently, you can see these packages are also being downloaded from their respective repositories (either CRAN or Bioconductor), then unzipped and assembled before PeacoQC undergoes installation. 
+
+:::
+:::
+
+::: {.fragment}
+:::{.callout-note}
+
+Behind the scenes, within an R package, what package dependencies need to be installed are specified through the Description and Namespace files. If a package name is removed from these files, it will not be installed during the installation process
+
+:::
+:::
+
+---
+
+![](images/12_PeacoQCDependencies.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Within the scrawl of installation outputs, we can see individual dependencies undergoing installation similar to what we saw with `dplyr`, with a "Done (packagename)" being printed upon successful installation. 
+
+:::
+:::
+
+---
+
+![](images/13_rjson.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+This process continues for each dependency being installed.
+
+:::
+:::
+
+---
+
+![](images/13b_Other.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+And finally, once all the dependencies are installed, `PeacoQC` starts to install. 
+
+:::
+:::
+
+---
+
+![](images/13c_PeacoQC.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Occasionally, during installation, you will see a pop-up windown like this one in the console. This let's you know that some of the package dependencies have newer updated versions that are available to download. We are prompted to select between updating all, some or none.  You will need to specify via the console how you want to proceed, by typing and entering one of the suggested options [a/s/n]. 
+
+:::
+:::
+
+---
+
+![](images/14_UpdateAll.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Alternatively you may encounter a pop-up that resembles this one. Unlike the a/s/n output, we would need to provide a number for our intended choice. In this case, I went ahead and skipped all updates by typing 3 into the console, then hitting enter.
+
+:::
+:::
+
+---
+
+![](images/16_GitHubInstall.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Generally, it's okay to update if you have the time. Updates generally consist of minor improvements or bug fixes, that shouldn't cause major issues. If you are short on time, you can go ahead and select skip the update by entering the value (n) for the none option.
+
+:::
+:::
+
+---
+
+![](images/14_UpdateAll.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+With PeacoQC has been installed, we can load it via the `library()` call
+
+:::
+:::
+
+:::{.callout-tip}
+
+Remeber, `library()` doesn't require " "
+
+:::
+
+::: {.fragment}
+
+```{r}
+library(PeacoQC)
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+And we can check to see if it has been attached to the local environment
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+sessionInfo()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+As you may have noticed, the section of ***loaded via namespace (but not attached)*** packages has grown larger. These packages are dependencies for the attached packages (dplyr, BiocManager and PeacoQC). Since the functions within these dependencies are only used selectively by the attached packages, they do not need to be active within the local environment. 
+
+:::
+:::
+
+---
+
+![](images/15_AdditionalDependencies.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+To see what packages are installed (but not yet loaded), we can use the `installed.packages()` function to return a list of R packages for your computer.
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+
+installed.packages()
+```
+
+:::
+
+---
+
+## Install from GitHub
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+In addition to the [CRAN](https://cran.r-project.org/) and [Bioconductor](https://www.bioconductor.org/) repositories, individual R packages can also be found on [GitHub](https://github.com/trending/r) hosted on their respective developers GitHub accounts. Newer packages that are still being worked on (often in the process of submission to [CRAN](https://r-pkgs.org/release.html) or [Bioconductor]((https://contributions.bioconductor.org/))) can be found here, as well as those where the author decided not to bother with a review process, and just made the packages immediately available, warts and all. 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+While many gems of R packages can be found on GitHub, there are also a bunch of R packages that due to [deprecation](https://devguide.ropensci.org/maintenance_evolution.html) since when they were published and released have stopped working. This is often the case for R packages that are not maintained, which is why it's useful to check the [commits](https://github.com/carlosproca/autospill/commits/master/) and [issues](https://github.com/carlosproca/autospill/issues) pages to see when the last contribution occurred. We will take a closer look at how to do so [later on](/Schedule.qmd#the-art-of-github-diving). 
+
+:::
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+To install packages from GitHub, you will need the `remotes` package, which can be found on CRAN.
+
+:::
+:::
+
+::: {.fragment}
+:::{.callout-tip title="Spot Check #1"}
+
+To install a package from CRAN, what function would you use? 
+Click on the code-fold arrow below to reveal the answer. 
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+install.packages("remotes")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+With the `remotes` package now installed, we can attach it to our local environment.
+
+:::
+:::
+
+::: {.fragment}
+:::{.callout-tip title="Spot Check #2"}
+
+What function would be used to do so?
+
+:::
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+library(remotes)
+```
+
+:::
+
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+And finally, we can use the `install_github()` function to download R packages from the invidual developers GitHub account. 
+
+:::
+:::
+
+::: {.fragment}
+:::{.callout-tip title="Spot Check #3"}
+
+How would you look up the help documentation for this function?
+
+::: 
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Either by hovering over it within Positron or via
+
+?install_github()
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We will be installing a small R package [flowSpectrum](https://github.com/hally166/flowSpectrum) for this example. It's one of the packages created by [Christopher Hall](https://github.com/hally166), whose small series of [Flow Cytometry Data Analysis in R](https://youtu.be/2INqQNMNaV0?si=dZ_rJ1S26KnNbUmU) tutorials were immensely useful when I was first getting started learning R. `flowSpectrum` can be used to generate spectrum-style plots for spectral flow cytometry data. 
+
+::: 
+:::
+
+---
+
+![](images/PE_Spectrum.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+To install an R package from GitHub, we first need the GitHub username (so [hally166](https://github.com/hally166) in this case), which is followed by a "/", and then the name of the package repository (so [flowSpectrum](https://github.com/hally166/flowSpectrum) in this case).  Our code should consequently be
+
+::: 
+:::
+
+::: {.fragment}
+
+```{r}
+#| eval: FALSE
+
+install_github("hally166/flowSpectrum")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+When installing from GitHub, the opening installation scrawl will look different. Unlike R packages from CRAN or Bioconductor, which are usually shipped in an assembled binary format, R packages from GitHub start off as source code. So the first steps shown in the scrawl are the process of converting them to binary before proceeding. 
+
+This process of building R packages from source code is one of the reasons we needed to install Rtools (for Windows users) or Xcode Developer Tools (for MacOS) for this course. We will look at this topic in greater depth later in the course when we talk about creating [R packages](/Schedule.qmd#building-your-first-r-package). 
+
+::: 
+:::
+
+---
+
+![](images/17_InstallSource.png)
+
+---
+
+## Troubleshooting Install Errors
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We have now installed three R packages, `dplyr`, `PeacoQC`, and `flowSpectrum`. In my case, I did not encounter any errors during the installation. However, sometimes a package installation will fail due to an error encountered during the installation process. This can be due to a number of reasons, ranging from a missing dependency, or an update that caused a conflict. While these can occur for CRAN or Bioconductor packages, they are more frequently seen for GitHub packages where the Description/Namespace files may not have been fully updated yet to install all the required dependencies. 
+
+When encountering an error, start of by first reading through the message to see if you can parse any useful information about what package failed to install, and if it list the missing dependency packages name. The later was the case in the error message example shown below.
+
+::: 
+:::
+
+---
+
+![](images/18_ErrorExample.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+If you encounter an installation error this week, please take screenshots of the error message and post them to this [Discussion](https://github.com/UMGCCCFCSR/CytometryInR/discussions/10). This will help us troubleshoot your installation, as well as provide additional examples of installation errors that will be used to update this section in the future. 
+
+::: 
+:::
+
+---
+
+
+## Documentation and Websites
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We have already seen a couple ways to access the help documentation contained within an R package via Positron. Beyond internal documentation, R packages often have external websites that contain additional walk-through articles (ie. vignettes) to better document how to use the package. 
+
+For CRAN-based packages, we can start off by searching for the package name. So, in the case of `dplyr`
+
+::: 
+:::
+
+---
+
+![](images/19_DplyrGoogle.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Two main suggestions pop up. One is the package's [CRAN](https://cran.r-project.org/web/packages/dplyr/index.html) page. Unfortunately, this one is not particularly user-friendly, although some text-based vignettes are accessible. 
+
+::: 
+:::
+
+---
+
+![](images/20_DplyrCRAN.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Because of this, many CRAN-based R packages (especially those part of the tidyverse) use [pkgdown](https://pkgdown.r-lib.org/)-generated websites hosted via a GitHub page (similar to the one used by this course. The second option on the search is dplyr's pkgdown-style [website](https://dplyr.tidyverse.org/)
+
+::: 
+:::
+
+---
+
+![](images/21_DplyrPkgdown.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+We can usually find the list of functions under the Reference tab, with the more extensive documentation vignettes being found under the Articles tab.
+
+::: 
+:::
+
+---
+
+![](images/22_PkgdownArticles.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+GitHub-based packages will vary depending on their individual developers, but often will also use pkgdown-style websites. These often appear as links on the right-hand side, or within the repository's ReadMe.
+
+::: 
+:::
+
+---
+
+![](images/23_GitHub.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+For Bioconductor-based packages, on the package's page we can typically find the already rendered vignette articles, usually as either html or pdf files. For example, with [PeacoQC](https://www.bioconductor.org/packages/release/bioc/vignettes/PeacoQC/inst/doc/PeacoQC_Vignette.pdf): 
+
+::: 
+:::
+
+---
+
+![](images/24_PeacoQCBioc.png)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Additionally, package vignettes can also be reached via the packages help index page. These will usually appear under ***User guides, package vignettes, and other documentation***.
+
+::: 
+:::
+
+---
+
+![](images/25_Vignettes.png)
+
+---
+
+
+# Your Turn
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Alright, we have now gone through the process of installing an R package from [CRAN](/course/01_InstallingRPackages/index.qmd#installing-from-cran), [Bioconductor](/course/01_InstallingRPackages/index.qmd#installing-from-bioconductor), and [GitHub](/course/01_InstallingRPackages/index.qmd#install-from-github). We will now install 20 other R packages we will need throughout the rest of the course.
+
+::: 
+:::
+
+:::{.callout-note}
+
+To make this interactive, [**I will task you**]{.underscore} to apply the previous concepts to figure out whether the packages need to be installed via CRAN, Bioconductor or GitHub.
+
+:::
+
+:::{.callout-important}
+
+Feel free to view the [website](https://umgcccfcsr.github.io/CytometryInR/course/) version to avoid accidental spoilers from the copied over index.qmd file. Alternatively, you can attempt to switch from the Source view to Visual Mode by right clicking with your mouse and selecting that option. 
+
+:::
+
+:::{.callout-tip}
+
+Start by searching each packages name. See if you can spot first either a CRAN or a Bioconductor website. Then enter the respective installation command (`install.packages()`, `install()`, `install_github()`) for the appropiate repository, add the package name, and run the code to see if the installation proceeds. 
+
+For cases where you are truly stuck, expand the code-fold below each package name to see the answer. 
+
+:::
+
+:::{.callout-note}
+
+Some of these packages may be dependencies of each other and may wind up installed before you get to them. If that is the case, no need to reinstall, count it as a win, and proceed to the next R package. 
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Remember,if you encountered any installation errors in the process, please take screenshots and post them on the the [Discussion page](https://github.com/UMGCCCFCSR/CytometryInR/discussions/10) to help with improved documentation.
+
+::: 
+:::
+
+---
+
+:::{.callout-tip title="1/20"}
+
+R package: purrr
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: CRAN
+# Website: https://purrr.tidyverse.org/
+
+install.packages("purrr")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="2/20"}
+
+R package: flowCore
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/flowCore.html
+
+install("flowCore")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="3/20"}
+
+R package: flowWorkspace
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/flowWorkspace.html
+
+install("flowWorkspace")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="4/20"}
+
+R package: stringr
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: CRAN
+# Website: https://stringr.tidyverse.org/
+
+install.packages("stringr")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="5/20"}
+
+R package: ggplot2
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: CRAN
+# Website: https://ggplot2.tidyverse.org/
+
+install.packages("ggplot2")
+```
+
+:::
+
+---
+
+
+:::{.callout-tip title="6/20"}
+
+R package: ggcyto
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/ggcyto.html
+
+install.packages("ggcyto")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="7/20"}
+
+R package: tidyr
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: CRAN
+# Website: https://tidyr.tidyverse.org/
+
+install.packages("tidyr")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="8/20"}
+
+R package: openCyto
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/openCyto.html
+
+install.packages("openCyto")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="9/20"}
+
+R package: FlowSOM
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html
+
+install.packages("FlowSOM")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="10/20"}
+
+R package: xml2
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: CRAN
+# Website: https://xml2.r-lib.org/
+
+install.packages("xml2")
+```
+
+:::
+
+---
+
+
+:::{.callout-tip title="11/20"}
+
+R package: saeyslab/CytoNorm
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+
+# Location: GitHub
+# Website: https://github.com/saeyslab/CytoNorm
+
+install_github("saeyslab/CytoNorm")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="12/20"}
+
+R package: lubridate
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website: https://lubridate.tidyverse.org/
+
+install.packages("lubridate")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="13/20"}
+
+R package: httr2
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website: https://httr2.r-lib.org/
+
+install.packages("httr2")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="14/20"}
+
+R package: flowGate
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/flowGate.html
+
+install("flowGate")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="15/20"}
+
+R package: devtools
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website: https://devtools.r-lib.org/
+
+install.packages("devtools")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="16/20"}
+
+R package: plotly
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website: https://plotly.com/r/getting-started/
+
+install.packages("plotly")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="17/20"}
+
+R package: biosurf/cyCombine
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: GitHub
+# Website: https://github.com/biosurf/cyCombine
+
+install_github("biosurf/cyCombine")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="18/20"}
+
+R package: CytoML
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: Bioconductor
+# Website: https://www.bioconductor.org/packages/release/bioc/html/CytoML.html
+
+install("CytoML")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="19/20"}
+
+R package: Rtsne
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website: https://github.com/jkrijthe/Rtsne
+
+install.packages("Rtsne")
+```
+
+:::
+
+---
+
+:::{.callout-tip title="20/20"}
+
+R package: uwot
+
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-fold: TRUE
+#| eval: FALSE
+
+# Location: CRAN
+# Website:https://jlmelville.github.io/uwot/
+
+install.packages("uwot")
+```
+
+:::
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+**Congratulations!** You have (hopefully) survived the package installation onslaught that is Week #1 of the course. 
+
+::: 
+:::
+
+---
+
+![](images/Entertained.jpg)
+
+---
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Remember to submit any encountered installation error screenshots to the [Discussion page](https://github.com/UMGCCCFCSR/CytometryInR/discussions/10).
+
+::: 
+:::
+
+---
+
+# Wrap-Up
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+In this session, we walked through what are R packages, where to find them, how to install them, and a bit about troubleshooting any installation errors you may encounter during the process.
+
+You then proceeded to install most of the R packages that you would need throughout the [Cytometry in R course](/Schedule.qmd). These included tidyverse packages from the [CRAN] repository used for working with data structures and plots, as well as more cytometry focused R packages from [Bioconductor] repository.
+
+If you have any questions, or want to discuss this week's topics in more depth with the other course participants, please head over to the [Discussion](https://github.com/UMGCCCFCSR/CytometryInR/discussions) page and open a new topic. 
+
+Next week, we will start learning about [file paths](/Schedule.qmd#file-paths), by which we will be able to tell our computer where to find your fcs files, how to retrieve the file names, subset those that may be of particular interest, and copy them over to a new folder. In the processs, we will learn a little more about how variables, objects, and list work within R. 
+
+Until then, Best Wishes!
+
+- David
+
+::: 
+:::
+
+---
+
+![](/course/01_InstallingRPackages/images/ExitImage.png)
+
+---
+
+# Additional Resources
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+[Tidy Tales](https://tidytales.ca/series/2023-01-24_reproducible-data-science/posts/r-packages.html) An usefu beginner-friendly blogpost covering additional aspects from a different perspective.
+
+[Introduction to Bioconductor](https://youtu.be/dg6NvmMVQ3I?si=WfsqpO3Z-M2oG8zh) A talk by Martin Morgan with more information about the Bioconductor project.
+
+[R Packages](https://r-pkgs.org/) A book by Hadley Wickham and Jennifer Bryan, covering all the different internals of R packages.
+
+::: 
+:::
+
+---
+
+
+# Take-home Problems
+
+::: {.fragment}
+::: {.callout-tip title="."}
+
+Below you will find the optional take-home problems for Week #1. Learning how to code well requires continous practice, and that involves cycles of trying something, failing, and troubleshooting to get it working. The goal of these problems is to help you explore the topic in greater depth than the currated boundaries of this one lecture. 
+
+You are more than welcome to open a [Discussion](https://github.com/UMGCCCFCSR/CytometryInR/discussions) to engage with others in the course to discuss these questions. Once you are done tinkering, and want to get final instructor feedback on your work, place your files within a folder, and follow the instructions to submit it as a [Pull Request](/course/00_Homeworks/index.qmd#submitting-take-home-problems) to the Cytometry In R repositories homework branch. 
+
+::: 
+:::
+
+---
+
+:::{.callout-tip title="Problem 1"}
+
+We installed PeacoQC during this session, but we didn't have time to explore what functions are present within the package. Using what you have learned about accessing documentation, figure out and list what functions it contains
+
+:::
+
+---
+
+:::{.callout-tip title="Problem 2"}
+
+Take a closer look at the list of Bioconductor [cytometry](https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry) packages. Report back on how many there are currently in Bioconductor, the author/maintainer with the most contributed cytometry R packages, and a couple packages that you would be interested in exploring more in-depth later in the course. 
+
+:::
+
+---
+ 
+:::{.callout-tip title="Problem 3"}
+
+There is another way to install R packages, using the newer [pak](https://pak.r-lib.org/) package. Positron uses this when installing suggested dependencies. 
+
+After learning more about it via the documentation and it's pkgdown website, I would like you to attempt to install the following three R packages using this newer method: "broom", "cytoMEM", "DillonHammill/CytoExploreR". 
+
+Take screenshots, and in a new [quarto markdown document](/course/00_Quarto/index.qmd), describe how the installation process differed from what you saw for `install.packages()`, `install()` and `install_github()`.
+
+:::
+
+---
+
+::: {style="text-align: right;"}
+[![AGPL-3.0](https://www.gnu.org/graphics/agplv3-with-text-162x68.png)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+:::
+

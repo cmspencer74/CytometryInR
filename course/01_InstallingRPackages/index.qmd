@@ -13,9 +13,11 @@ toc-depth: 5
 [![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
 :::
 
-For screen-shot slides, click [here](/course/01_InstallingRPackages/slides.qmd)
+For the YouTube livestream recording, see [here](https://youtube.com/live/ZNFNokzsBaM)
 
-For the YouTube livestream recording (starting Wednesday), click [here](https://www.youtube.com/@CytometryInR)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZNFNokzsBaM?si=G2n2W_aW39KUia_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+For screen-shot slides, click [here](/course/01_InstallingRPackages/slides.qmd)
 
 ```{r}
 #| include: FALSE
@@ -999,7 +1001,7 @@ R package: ggcyto
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/ggcyto.html
 
-install.packages("ggcyto")
+install("ggcyto")
 ```
 
 <br>
@@ -1037,7 +1039,7 @@ R package: openCyto
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/openCyto.html
 
-install.packages("openCyto")
+install("openCyto")
 ```
 
 <br>
@@ -1056,7 +1058,7 @@ R package: FlowSOM
 # Location: Bioconductor
 # Website: https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html
 
-install.packages("FlowSOM")
+install("FlowSOM")
 ```
 
 <br>

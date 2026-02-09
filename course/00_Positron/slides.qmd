@@ -228,14 +228,17 @@ Source tab will normally be the active view, which will show everything as code/
 
 ::: {.fragment}
 ::: {.callout-tip title="."}
-However, when we switch to Visual mode, it will visualize in a similar manner as if we had rendered the document as an .html webpage.
+However, we can also switch to Visual mode (by right clicking and selecting Edit Visual Mode) which will visualize it in a similar manner as if we had rendered the document as an .html webpage.
 :::
 :::
 
 ---
 
-![](images/10_Visual.png)
+![](images/EditVisualMode.png)
 
+---
+
+![](images/10_Visual.png)
 
 ---
 

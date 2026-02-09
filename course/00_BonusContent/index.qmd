@@ -1,0 +1,88 @@
+---
+title: "Bonus Content"
+author: "David Rach"
+date: 02-04-2026
+format: html
+toc: true
+toc-depth: 4
+---
+
+![](/images/WebsiteBanner.png)
+
+::: {style="text-align: right;"}
+[![AGPL-3.0](https://img.shields.io/badge/license-AGPLv3-blue)](https://www.gnu.org/licenses/agpl-3.0.en.html) [![CC BY-SA 4.0](https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by-sa/4.0/)
+:::
+
+This is a miscellaneous page to host walk-throughs of topics that come up via the [Discussion Page](https://github.com/UMGCCCFCSR/CytometryInR/discussions). Rather than re-explain how to in the comments, I want to have a place to post short-walkthroughs to solve these issues, while avoiding incorporating it into the existing walk-throughs at this point in time. I hope you find it useful, and pardon the organized chaos of miscellaneous topics.
+
+# 00_WorkStationSetup
+
+## Windows Arm
+
+### Positron
+
+On the main Positron [installation page](https://positron.posit.co/download.html), only the installers for Windows Computers with x86 chips are currently shown. There is a beta (experimental) version of Positron for Windows ARM (ex. Snapdragons), but it needs to be installed from Positron's GitHub [releases page](https://github.com/posit-dev/positron/releases).
+
+![](/course/00_BonusContent/images/WindowsArm.png)
+
+Please note, you should download the most recent version that is available to you, as they continue to update it and fix bugs. As of February 04, 2026, you would also need to install Quarto separately.
+
+To install Quarto, first navigate to their [website](https://quarto.org/docs/get-started/). Quarto for Windows ARM was implemented in [2023](https://github.com/quarto-dev/quarto-cli/issues/190), so the regular installer should work.
+
+![](/course/00_BonusContent/images/WindowsArm.png)
+
+Also, you would need a Python arm64 installation installed if you decide you want to venture into using Python at any point.
+
+# 00_Positron
+
+## Visual Mode
+
+Within Positron, there exist a toggle button to switch between source and visual mode on Quarto documents. But what do you do when you can't find it?
+
+![](/course/00_BonusContent/images/ToggleAfika.png)
+
+Tuns out.... Visual Mode is currently broken, so the developers [removed it](https://github.com/posit-dev/positron/issues/1805#issuecomment-3792323435) about two weeks ago.
+
+The current way to switch to it is via right-click, then select edit visual mode.
+
+![](/course/00_BonusContent/images/EditVisualMode.png)
+
+Vice versa, once there, you can revert by right-clicking and selecting Edit Source Mode
+
+![](/course/00_BonusContent/images/EditSourceMode.png)
+
+The process of figuring what is going on highlights how to use a GitHub Discussion Page. This is [Positrons](https://github.com/posit-dev/positron/discussions?discussions_q=visual+button) when I searched for visual button. I then found that a similar question was asked 3 days ago that led me to the linked thread above.
+
+![](/course/00_BonusContent/images/DiscussionPageSearch.png)
+
+# 00_Git
+
+## Not Detecting Git
+
+If you leave the "Initialize Git Repository" option unclicked when setting up a New Folder from Template, Git will not be active within your project folder.
+
+![](/course/00_BonusContent/images/NoGitInitialized.png)
+
+As a result, when you try to use the `usethis` packages `use_github(private=true)` function, you will get an error that resembles the one below
+
+![](/course/00_BonusContent/images/NoGitDetected.png)
+
+To initiate a Git repository after the fact, you will need to go to the Version Control tab in the action bar, and select the option. 
+
+![](/course/00_BonusContent/images/InitializeRepository.png)
+
+Then, you will need to stage the files you want to work with, and commit them. 
+
+![](/course/00_BonusContent/images/SaveCommit.png)
+
+`use_github(private=TRUE)` should now be functional at that point. However, you can also choose to continue via Positron's interface instead by selecting Publish. 
+
+![](/course/00_BonusContent/images/PublishBranch.png)
+
+It will then ask you whether you want to save it as either a Public or a Private repository.
+
+![](/course/00_BonusContent/images/PrivateRepository.png)
+
+And if all goes well, you will see the "Successs" pop-up in the lower-right
+
+![](/course/00_BonusContent/images/SuccessToGitHub.png)

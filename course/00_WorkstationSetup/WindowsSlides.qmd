@@ -531,8 +531,19 @@ With the license accepted, you will be able to select your operating system. In 
 
 ---
 
+::: {.fragment}
+::: {.callout-tip title="."}
 ![](images/Windows/26_UserInstall.png)
+:::
+:::
 
+---
+
+Please note, if you are using a Windows computer with an ARM based chip (like is the case with Snapdragons), you will need to download the installed from the Positron's GitHub [Release Page](), as they are still testing some features. 
+
+---
+
+![](images/Windows/WindowsArm.png)
 
 ---
 

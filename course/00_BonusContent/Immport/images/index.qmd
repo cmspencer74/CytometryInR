@@ -1,0 +1,14 @@
+---
+title: "ImmPort - Downloading Datasets"
+author: "David Rach"
+date: 02-06-2026
+format: html
+toc: true
+toc-depth: 4
+---
+
+To download data from the ImmPort Shared Data Repository, first navigate to the [website](https://www.immport.org/shared/home)
+
+![](images/)
+
+For help setting up Aspera Connect, see the following [help documentation](https://www.immport.org/installAsperaHelp)

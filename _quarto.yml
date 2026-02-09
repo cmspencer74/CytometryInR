@@ -7,12 +7,13 @@ project:
     - course/index.qmd
     - 00_*
     - 01_*
+    - 02_*
 website:
   google-analytics: "G-LZ35J3XE4D"
   announcement: 
     icon: info-circle
     dismissable: true
-    content: "Course starts week of February 1st. Workstation setup tutorials are now available. See Email for Details."
+    content: "See Course tab for Course Materials, see YouTube tab for livestream recordings"
     type: info
     position: below-navbar 
   page-navigation: true 
@@ -61,6 +62,8 @@ website:
       contents:
       - text: "01 - Installing R Packages"
         href: course/01_InstallingRPackages/index.qmd
+      - text: "02 - File Paths"
+        href: course/02_FilePaths/index.qmd
     - section: "Cytometry Core"
       href: Schedule.qmd
     - section: "Beyond the Sandbox"

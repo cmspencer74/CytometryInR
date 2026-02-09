@@ -1,0 +1,3196 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="David Rach">
+  <meta name="dcterms.date" content="2026-02-01">
+  <title>Cytometry in R – 01 - Installing R Packages</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LZ35J3XE4D"></script>
+
+  <script type="text/javascript">
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
+  </script>
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">01 - Installing R Packages</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+David Rach 
+</div>
+</div>
+</div>
+
+  <p class="date">2026-02-01</p>
+</section>
+<section class="slide level2">
+
+
+<img data-src="../../images/WebsiteBanner.png" class="r-stretch"><div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Welcome to the first week of <a href="../../Schedule.html">Cytometry in R</a>! This week we will be diving into how R packages work, and the how to go about installing them.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<section id="background" class="title-slide slide level1 center">
+<h1>Background</h1>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>During <a href="../../course/00_WorkstationSetup/">Workstation Setup</a>, you installed the R software to your local computer. R as a <a href="https://en.wikipedia.org/wiki/R_(programming_language)">programming language</a> that started up in the 1990s. While its original focus was on statistics, it is now widely used in various fields thanks to contributions of many open-source developers over the years.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>This expanded reach is in part due to the ability to create <a href="https://en.wikipedia.org/wiki/R_package"><strong>R packages</strong></a>, that encapsulate additional <a href="https://adv-r.hadley.nz/functions.html#function-fundamentals"><strong>functions</strong></a>, that can do new things beyond what the original software (ie. <strong>base R</strong>) was capable of doing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Currently, there are <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">thousands</a> of R packages available. Furthermore, there is a vibrant <a href="https://www.reddit.com/r/rstats/">community</a> of individuals that help maintain and document how to use these packages, which has helped sustain and grow the R ecosystem over the last couple <a href="https://youtu.be/gjpNEVcG1nU?si=rcEBSc7AnAsgsAy2">decades</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Regardless if you are working with <a href="https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry">flow cytometry</a>, or in <a href="https://drmattg.github.io/REcol-verse/">ecology</a>, or in <a href="https://www.econometrics-with-r.org/1-introduction.html">econometrics</a>, or <a href="https://github.com/fivethirtyeight/data">political science</a>, a lot of the analysis and visualizations that you see in publications often involve R.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Expanding on this concept, a new R package can be made up of new code (primarily in the form of tools (ie. <strong>functions</strong>) that do a particular useful things) that is entirely self-contained, or reuse functions present in existing R packages to help make something new. When an R package relies on a function from another R package, it needs the other R package to be installed in order for everything to work properly. This is known as a package <strong>dependency</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>The three main locations for R packages from are <strong><a href="https://cran.r-project.org/">CRAN</a></strong> (containing 23069 packages), <strong><a href="https://www.bioconductor.org/">Bioconductor</a></strong> (containing 2361 packages), and individual R packages hosted by their developers via <strong><a href="https://github.com/trending/r">GitHub</a></strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>The process of installing R packages will vary a bit depending on which repository the respective R package is in. For beginners, this often prooves to be a pain-point, as they will attempt to install an R package using one set of installation commands, only to get an error (because the R package is not in that repository).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="getting-started" class="title-slide slide level1 center">
+<h1>Getting Started</h1>
+
+</section>
+<section id="checking-for-loaded-packages" class="slide level2">
+<h2>Checking for Loaded Packages</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>For the contents (ie. the functions) of an R package to be available for your computer to use, they must first be activated (ie. loaded) into your local environment. We will first learn how to check what R packages are currently active.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="accessing-help-documentation">Accessing Help Documentation</h3>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Within your own index.qmd (or a new .qmd file that you created), type out/copy-paste the following <code>sessionInfo()</code> function</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>If you hover over the line of code within Positron, you will glimpse the help file for the particular function you are hovering over.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/02_HelpHover.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>?<span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/03_QuestionMark.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="sessioninfo">sessionInfo()</h3>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Within your .qmd file, let’s go ahead and run the following code-block:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31)
+Platform: x86_64-pc-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+ [1] compiler_4.5.2  fastmap_1.2.0   cli_3.6.5       tools_4.5.2    
+ [5] htmltools_0.5.9 otel_0.2.0      yaml_2.3.12     rmarkdown_2.30 
+ [9] knitr_1.51      jsonlite_2.0.0  xfun_0.56       digest_0.6.39  
+[13] rlang_1.1.7     evaluate_1.0.5 </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>The outputs that get returned by <code>sessionInfo()</code> will vary a bit depending on your computer’s <a href="../../course/00_WorkstationSetup/">operating system</a>, and the version of R you have installed.</p>
+<p>For today, let’s focus on the last two elements of the output:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/06_sessionInfo.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>The <a href="https://www.r-project.org/">R software</a> itself is made up of several <strong>base R packages</strong>, that are loaded automatically. These contain everything you need to read, write and run R code on your computer. You can see these packages are the stats, graphics, grDevices, utils, datasets, methods and base packages.</p>
+<p>As we install additional R packages and load them using the <code>library()</code> function throughout this session, sporadically re-run <code>sessionInfo()</code> to see how this list of R packages changes.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-from-cran" class="slide level2">
+<h2>Installing from CRAN</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We will start by installing R packages that are part of the <a href="https://cran.r-project.org/">CRAN</a> repository. This is the main R package repository, being part of the broader R software project. In the context of this course, R packages that work primarily with general data structure (rows, columns, matrices, etc.) or visualizations will predominantly be found within this repository.</p>
+<p>These include the <a href="https://tidyverse.org/">tidyverse</a> packages. These packages have collectively made R easier to use by smoothing out some of the rough edges of base R, which is why R has seen major growth within the last decade. We will be installing several of these R packages today.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="dplyr">dplyr</h3>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Our first R package we will install during this session is the <a href="https://dplyr.tidyverse.org/">dplyr</a> package. Since it is hosted on the CRAN repository, to install it, we will need to use the CRAN-specific installation function <code>install.packages()</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>?<span class="fu">install.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/07_InstallPackages.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>For the <code>install.packages()</code> function, we place within the () the name of the R package from CRAN that we wish to install.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>A usual struggle point for beginners is that install.packages() requires ” ” to be placed around the package name. Forgetting them results in the error that we see below.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">install.packages</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error:
+! object 'dplyr' not found</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Go ahead and click on “Run Cell” next to your code-block, to install the <code>dplyr</code> R package.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>When a package starts to install, you will see your console start to display text resembling that seen in the image below (varying a bit depending on your computers operating system).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/08_InstallScript.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Within this opening scrawl, you will see the location on your computer the R package is being installed to, as well as the file location for the R package being retrieved on CRAN.</p>
+<p>If the package is successfully located, your computer will proceed to first download, then unpack (ie. unzip) it, before attempting to install to the target folder.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/09_InstallScript2.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>The final steps of the installation process involved various steps to verify everything was copied successfully, the help documentation assembled, and that the R package is capable of being loaded. If this is the case, you will see the “Done” line appear, as well as a mention where the original downloaded source package files has been stashed (usually a temp folder).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="attaching-packages-via-library">Attaching packages via library()</h3>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>If an R package has been installed successfully, we are now able to load it (ie. make it’s functions available) to our local environment using the <code>library()</code> function.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>?<span class="fu">library</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Unlike <code>install.packages()</code>, where we needed “” around the package name, the <code>library()</code> function does not require “” around the package name. Let’s go ahead and load in <code>dplyr</code>, making its respective functions to our local environment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>From the output, we can see that <code>dplyr</code> has been attached. There are also a couple functions within dplyr that have identical names to functions within the stats and base packages. To avoid confusion, these 6 functions are masked, which is why we get the additional messages.</p>
+<p>With <code>dplyr</code> now loaded via the <code>library()</code> call, let’s check <code>sessionInfo()</code> to see what has changed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31)
+Platform: x86_64-pc-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] dplyr_1.2.0
+
+loaded via a namespace (and not attached):
+ [1] digest_0.6.39    R6_2.6.1         fastmap_1.2.0    tidyselect_1.2.1
+ [5] xfun_0.56        magrittr_2.0.4   glue_1.8.0       tibble_3.3.1    
+ [9] knitr_1.51       pkgconfig_2.0.3  htmltools_0.5.9  generics_0.1.4  
+[13] rmarkdown_2.30   lifecycle_1.0.5  cli_3.6.5        vctrs_0.7.1     
+[17] compiler_4.5.2   tools_4.5.2      evaluate_1.0.5   pillar_1.11.1   
+[21] yaml_2.3.12      otel_0.2.0       rlang_1.1.7      jsonlite_2.0.0  </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Similar to what was seen for the base R packages, <code>dplyr</code> is now attached. This means we should theoretically now have access to all its functions. We can verify this by seeing if we can look up the <code>dplyr</code> packages <code>select()</code> function and it’s respective help page.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>?select</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/10_Attached.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Since its parent package has been attached to our local environment (via the <code>library()</code> call), we can see <code>dplyr</code> functions appear as suggestions as we begin to type.</p>
+<p>By contrast, is we check for the <code>ggplot()</code> function from the ggplot2 package (which we haven’t yet installed or attached via <code>library()</code>), no suggestions will pop up.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>?ggplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>No documentation for 'ggplot' in specified packages and libraries:
+you could try '??ggplot'</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="common-issues">Common Issues</h3>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>As previously mentioned, <a href="https://cran.r-project.org/">CRAN</a> is the main repository for R packages. But what if we tried to install an R package that is only found on <a href="https://www.bioconductor.org/">Bioconductor</a> or via <a href="https://github.com/trending/r">GitHub</a> using the <code>install.packages()</code> function?</p>
+<p>To see what occurs, let’s try installing the <code>PeacoQC</code> <a href="https://www.bioconductor.org/packages/release/bioc/html/PeacoQC.html">package</a> (which is found on Bioconductor).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">install.packages</span>(<span class="st">"PeacoQC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>As you can see, the initial warning message suggest that <code>PeacoQC</code> is not available for your version of R. When I first started trying to learn R on my own during COVID, this particular message was the bane of my existence and I couldn’t figure out what was going on.</p>
+<p>This is just a default warning message, that would apply for both a package having a version mismatch, but also shown when trying to install packages that are not found on CRAN.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-from-bioconductor" class="slide level2">
+<h2>Installing from Bioconductor</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p><strong><a href="https://www.bioconductor.org/">Bioconductor</a></strong> is the second R package repository we will be working with throughout the course. While it contains far fewer packages than CRAN, it contains packages that are primarily used by the biomedical sciences. Following this <a href="https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry">link</a> you can find it’s current flow and mass cytometry R packages.</p>
+<p>Bioconductor R packages differ from CRAN R packages in a couple of ways. Bioconductor has different <a href="https://contributions.bioconductor.org/">standards</a> for acceptance than <a href="https://r-pkgs.org/release.html">CRAN</a>. They usually contain interoperable object-types, put more effort into documentation and continous testing to ensure that the R package remains functional across operating systems.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>To install an R package that is located on <a href="https://www.bioconductor.org/">Bioconductor</a>, we first need to install the <code>BiocManager</code> package from CRAN. This package will allow us to install Bioconductor packages from their respective repository.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="fu">install.packages</span>(<span class="st">"BiocManager"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Once BiocManager is installed, we can attach it to our local environment using the <code>library()</code> function</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(BiocManager)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>When loaded, you will see an output showing the current Bioconductor and R versions.</p>
+<p>We can then use BiocManager’s <code>install()</code> function to go back and install <code>PeacoQC()</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>As always, don’t forget the “” when running an <code>install()</code> command.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>?<span class="fu">install</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">install</span>(<span class="st">"PeacoQC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We see a similar opening sequence of installation steps as what we saw when installing the <code>dplyr</code> package from CRAN. However, in this case, several package dependencies (rjson, GlobalOptions, etc.) are present. Consequently, you can see these packages are also being downloaded from their respective repositories (either CRAN or Bioconductor), then unzipped and assembled before PeacoQC undergoes installation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Behind the scenes, within an R package, what package dependencies need to be installed are specified through the Description and Namespace files. If a package name is removed from these files, it will not be installed during the installation process</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/12_PeacoQCDependencies.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Within the scrawl of installation outputs, we can see individual dependencies undergoing installation similar to what we saw with <code>dplyr</code>, with a “Done (packagename)” being printed upon successful installation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/13_rjson.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>This process continues for each dependency being installed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/13b_Other.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>And finally, once all the dependencies are installed, <code>PeacoQC</code> starts to install.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/13c_PeacoQC.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Occasionally, during installation, you will see a pop-up windown like this one in the console. This let’s you know that some of the package dependencies have newer updated versions that are available to download. We are prompted to select between updating all, some or none. You will need to specify via the console how you want to proceed, by typing and entering one of the suggested options [a/s/n].</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/14_UpdateAll.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Alternatively you may encounter a pop-up that resembles this one. Unlike the a/s/n output, we would need to provide a number for our intended choice. In this case, I went ahead and skipped all updates by typing 3 into the console, then hitting enter.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/16_GitHubInstall.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Generally, it’s okay to update if you have the time. Updates generally consist of minor improvements or bug fixes, that shouldn’t cause major issues. If you are short on time, you can go ahead and select skip the update by entering the value (n) for the none option.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/14_UpdateAll.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>With PeacoQC has been installed, we can load it via the <code>library()</code> call</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Remeber, <code>library()</code> doesn’t require ” ”</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(PeacoQC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>And we can check to see if it has been attached to the local environment</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.5.2 (2025-10-31)
+Platform: x86_64-pc-linux-gnu
+Running under: Debian GNU/Linux 13 (trixie)
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.1 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.1;  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] PeacoQC_1.20.0      BiocManager_1.30.27 dplyr_1.2.0        
+
+loaded via a namespace (and not attached):
+ [1] generics_0.1.4        shape_1.4.6.1         digest_0.6.39        
+ [4] magrittr_2.0.4        evaluate_1.0.5        grid_4.5.2           
+ [7] RColorBrewer_1.1-3    iterators_1.0.14      circlize_0.4.17      
+[10] fastmap_1.2.0         foreach_1.5.2         doParallel_1.0.17    
+[13] jsonlite_2.0.0        graph_1.88.1          GlobalOptions_0.1.3  
+[16] ComplexHeatmap_2.26.0 flowWorkspace_4.22.1  scales_1.4.0         
+[19] XML_3.99-0.20         Rgraphviz_2.54.0      codetools_0.2-20     
+[22] cli_3.6.5             RProtoBufLib_2.22.0   rlang_1.1.7          
+[25] crayon_1.5.3          Biobase_2.70.0        yaml_2.3.12          
+[28] otel_0.2.0            cytolib_2.22.0        ncdfFlow_2.56.0      
+[31] tools_4.5.2           parallel_4.5.2        colorspace_2.1-2     
+[34] ggplot2_4.0.1         GetoptLong_1.1.0      BiocGenerics_0.56.0  
+[37] vctrs_0.7.1           R6_2.6.1              png_0.1-8            
+[40] matrixStats_1.5.0     stats4_4.5.2          lifecycle_1.0.5      
+[43] flowCore_2.22.1       S4Vectors_0.48.0      IRanges_2.44.0       
+[46] clue_0.3-66           cluster_2.1.8.1       pkgconfig_2.0.3      
+[49] pillar_1.11.1         gtable_0.3.6          data.table_1.18.2.1  
+[52] glue_1.8.0            xfun_0.56             tibble_3.3.1         
+[55] tidyselect_1.2.1      knitr_1.51            farver_2.1.2         
+[58] rjson_0.2.23          htmltools_0.5.9       rmarkdown_2.30       
+[61] compiler_4.5.2        S7_0.2.1             </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>As you may have noticed, the section of <strong><em>loaded via namespace (but not attached)</em></strong> packages has grown larger. These packages are dependencies for the attached packages (dplyr, BiocManager and PeacoQC). Since the functions within these dependencies are only used selectively by the attached packages, they do not need to be active within the local environment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/15_AdditionalDependencies.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>To see what packages are installed (but not yet loaded), we can use the <code>installed.packages()</code> function to return a list of R packages for your computer.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">installed.packages</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="install-from-github" class="slide level2">
+<h2>Install from GitHub</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>In addition to the <a href="https://cran.r-project.org/">CRAN</a> and <a href="https://www.bioconductor.org/">Bioconductor</a> repositories, individual R packages can also be found on <a href="https://github.com/trending/r">GitHub</a> hosted on their respective developers GitHub accounts. Newer packages that are still being worked on (often in the process of submission to <a href="https://r-pkgs.org/release.html">CRAN</a> or <a href="(https://contributions.bioconductor.org/)">Bioconductor</a>) can be found here, as well as those where the author decided not to bother with a review process, and just made the packages immediately available, warts and all.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>While many gems of R packages can be found on GitHub, there are also a bunch of R packages that due to <a href="https://devguide.ropensci.org/maintenance_evolution.html">deprecation</a> since when they were published and released have stopped working. This is often the case for R packages that are not maintained, which is why it’s useful to check the <a href="https://github.com/carlosproca/autospill/commits/master/">commits</a> and <a href="https://github.com/carlosproca/autospill/issues">issues</a> pages to see when the last contribution occurred. We will take a closer look at how to do so <a href="../../Schedule.html#the-art-of-github-diving">later on</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>To install packages from GitHub, you will need the <code>remotes</code> package, which can be found on CRAN.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title="Spot Check #1">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Spot Check #1</strong></p>
+</div>
+<div class="callout-content">
+<p>To install a package from CRAN, what function would you use? Click on the code-fold arrow below to reveal the answer.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>With the <code>remotes</code> package now installed, we can attach it to our local environment.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title="Spot Check #2">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Spot Check #2</strong></p>
+</div>
+<div class="callout-content">
+<p>What function would be used to do so?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(remotes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>And finally, we can use the <code>install_github()</code> function to download R packages from the invidual developers GitHub account.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div title="Spot Check #3">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Spot Check #3</strong></p>
+</div>
+<div class="callout-content">
+<p>How would you look up the help documentation for this function?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="co"># Either by hovering over it within Positron or via</span></span>
+<span id="cb28-2"><a></a></span>
+<span id="cb28-3"><a></a>?<span class="fu">install_github</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We will be installing a small R package <a href="https://github.com/hally166/flowSpectrum">flowSpectrum</a> for this example. It’s one of the packages created by <a href="https://github.com/hally166">Christopher Hall</a>, whose small series of <a href="https://youtu.be/2INqQNMNaV0?si=dZ_rJ1S26KnNbUmU">Flow Cytometry Data Analysis in R</a> tutorials were immensely useful when I was first getting started learning R. <code>flowSpectrum</code> can be used to generate spectrum-style plots for spectral flow cytometry data.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/PE_Spectrum.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>To install an R package from GitHub, we first need the GitHub username (so <a href="https://github.com/hally166">hally166</a> in this case), which is followed by a “/”, and then the name of the package repository (so <a href="https://github.com/hally166/flowSpectrum">flowSpectrum</a> in this case). Our code should consequently be</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">install_github</span>(<span class="st">"hally166/flowSpectrum"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>When installing from GitHub, the opening installation scrawl will look different. Unlike R packages from CRAN or Bioconductor, which are usually shipped in an assembled binary format, R packages from GitHub start off as source code. So the first steps shown in the scrawl are the process of converting them to binary before proceeding.</p>
+<p>This process of building R packages from source code is one of the reasons we needed to install Rtools (for Windows users) or Xcode Developer Tools (for MacOS) for this course. We will look at this topic in greater depth later in the course when we talk about creating <a href="../../Schedule.html#building-your-first-r-package">R packages</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/17_InstallSource.png" class="r-stretch"></section>
+<section id="troubleshooting-install-errors" class="slide level2">
+<h2>Troubleshooting Install Errors</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We have now installed three R packages, <code>dplyr</code>, <code>PeacoQC</code>, and <code>flowSpectrum</code>. In my case, I did not encounter any errors during the installation. However, sometimes a package installation will fail due to an error encountered during the installation process. This can be due to a number of reasons, ranging from a missing dependency, or an update that caused a conflict. While these can occur for CRAN or Bioconductor packages, they are more frequently seen for GitHub packages where the Description/Namespace files may not have been fully updated yet to install all the required dependencies.</p>
+<p>When encountering an error, start of by first reading through the message to see if you can parse any useful information about what package failed to install, and if it list the missing dependency packages name. The later was the case in the error message example shown below.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/18_ErrorExample.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>If you encounter an installation error this week, please take screenshots of the error message and post them to this <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions/10">Discussion</a>. This will help us troubleshoot your installation, as well as provide additional examples of installation errors that will be used to update this section in the future.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="documentation-and-websites" class="slide level2">
+<h2>Documentation and Websites</h2>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We have already seen a couple ways to access the help documentation contained within an R package via Positron. Beyond internal documentation, R packages often have external websites that contain additional walk-through articles (ie. vignettes) to better document how to use the package.</p>
+<p>For CRAN-based packages, we can start off by searching for the package name. So, in the case of <code>dplyr</code></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/19_DplyrGoogle.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Two main suggestions pop up. One is the package’s <a href="https://cran.r-project.org/web/packages/dplyr/index.html">CRAN</a> page. Unfortunately, this one is not particularly user-friendly, although some text-based vignettes are accessible.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/20_DplyrCRAN.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Because of this, many CRAN-based R packages (especially those part of the tidyverse) use <a href="https://pkgdown.r-lib.org/">pkgdown</a>-generated websites hosted via a GitHub page (similar to the one used by this course. The second option on the search is dplyr’s pkgdown-style <a href="https://dplyr.tidyverse.org/">website</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/21_DplyrPkgdown.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>We can usually find the list of functions under the Reference tab, with the more extensive documentation vignettes being found under the Articles tab.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/22_PkgdownArticles.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>GitHub-based packages will vary depending on their individual developers, but often will also use pkgdown-style websites. These often appear as links on the right-hand side, or within the repository’s ReadMe.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/23_GitHub.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>For Bioconductor-based packages, on the package’s page we can typically find the already rendered vignette articles, usually as either html or pdf files. For example, with <a href="https://www.bioconductor.org/packages/release/bioc/vignettes/PeacoQC/inst/doc/PeacoQC_Vignette.pdf">PeacoQC</a>:</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/24_PeacoQCBioc.png" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Additionally, package vignettes can also be reached via the packages help index page. These will usually appear under <strong><em>User guides, package vignettes, and other documentation</em></strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/25_Vignettes.png" class="r-stretch"></section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="your-turn" class="title-slide slide level1 center">
+<h1>Your Turn</h1>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Alright, we have now gone through the process of installing an R package from <a href="../../course/01_InstallingRPackages/index.html#installing-from-cran">CRAN</a>, <a href="../../course/01_InstallingRPackages/index.html#installing-from-bioconductor">Bioconductor</a>, and <a href="../../course/01_InstallingRPackages/index.html#install-from-github">GitHub</a>. We will now install 20 other R packages we will need throughout the rest of the course.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>To make this interactive, <span class="underscore"><strong>I will task you</strong></span> to apply the previous concepts to figure out whether the packages need to be installed via CRAN, Bioconductor or GitHub.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Feel free to view the <a href="https://umgcccfcsr.github.io/CytometryInR/course/">website</a> version to avoid accidental spoilers from the copied over index.qmd file. Alternatively, you can attempt to switch from the Source view to Visual Mode by right clicking with your mouse and selecting that option.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Start by searching each packages name. See if you can spot first either a CRAN or a Bioconductor website. Then enter the respective installation command (<code>install.packages()</code>, <code>install()</code>, <code>install_github()</code>) for the appropiate repository, add the package name, and run the code to see if the installation proceeds.</p>
+<p>For cases where you are truly stuck, expand the code-fold below each package name to see the answer.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Some of these packages may be dependencies of each other and may wind up installed before you get to them. If that is the case, no need to reinstall, count it as a win, and proceed to the next R package.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Remember,if you encountered any installation errors in the process, please take screenshots and post them on the the <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions/10">Discussion page</a> to help with improved documentation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="1/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>1/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: purrr</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb30-2"><a></a><span class="co"># Website: https://purrr.tidyverse.org/</span></span>
+<span id="cb30-3"><a></a></span>
+<span id="cb30-4"><a></a><span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="2/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>2/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: flowCore</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb31-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/flowCore.html</span></span>
+<span id="cb31-3"><a></a></span>
+<span id="cb31-4"><a></a><span class="fu">install</span>(<span class="st">"flowCore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="3/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>3/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: flowWorkspace</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb32-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/flowWorkspace.html</span></span>
+<span id="cb32-3"><a></a></span>
+<span id="cb32-4"><a></a><span class="fu">install</span>(<span class="st">"flowWorkspace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="4/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>4/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: stringr</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb33-2"><a></a><span class="co"># Website: https://stringr.tidyverse.org/</span></span>
+<span id="cb33-3"><a></a></span>
+<span id="cb33-4"><a></a><span class="fu">install.packages</span>(<span class="st">"stringr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="5/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>5/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: ggplot2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb34-2"><a></a><span class="co"># Website: https://ggplot2.tidyverse.org/</span></span>
+<span id="cb34-3"><a></a></span>
+<span id="cb34-4"><a></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="6/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>6/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: ggcyto</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb35-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/ggcyto.html</span></span>
+<span id="cb35-3"><a></a></span>
+<span id="cb35-4"><a></a><span class="fu">install.packages</span>(<span class="st">"ggcyto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="7/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>7/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: tidyr</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb36-2"><a></a><span class="co"># Website: https://tidyr.tidyverse.org/</span></span>
+<span id="cb36-3"><a></a></span>
+<span id="cb36-4"><a></a><span class="fu">install.packages</span>(<span class="st">"tidyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="8/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>8/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: openCyto</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb37-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/openCyto.html</span></span>
+<span id="cb37-3"><a></a></span>
+<span id="cb37-4"><a></a><span class="fu">install.packages</span>(<span class="st">"openCyto"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="9/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>9/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: FlowSOM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb38-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/FlowSOM.html</span></span>
+<span id="cb38-3"><a></a></span>
+<span id="cb38-4"><a></a><span class="fu">install.packages</span>(<span class="st">"FlowSOM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="10/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>10/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: xml2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb39-2"><a></a><span class="co"># Website: https://xml2.r-lib.org/</span></span>
+<span id="cb39-3"><a></a></span>
+<span id="cb39-4"><a></a><span class="fu">install.packages</span>(<span class="st">"xml2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="11/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>11/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: saeyslab/CytoNorm</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a><span class="co"># Location: GitHub</span></span>
+<span id="cb40-2"><a></a><span class="co"># Website: https://github.com/saeyslab/CytoNorm</span></span>
+<span id="cb40-3"><a></a></span>
+<span id="cb40-4"><a></a><span class="fu">install_github</span>(<span class="st">"saeyslab/CytoNorm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="12/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>12/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: lubridate</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb41-2"><a></a><span class="co"># Website: https://lubridate.tidyverse.org/</span></span>
+<span id="cb41-3"><a></a></span>
+<span id="cb41-4"><a></a><span class="fu">install.packages</span>(<span class="st">"lubridate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="13/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>13/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: httr2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb42-2"><a></a><span class="co"># Website: https://httr2.r-lib.org/</span></span>
+<span id="cb42-3"><a></a></span>
+<span id="cb42-4"><a></a><span class="fu">install.packages</span>(<span class="st">"httr2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="14/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>14/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: flowGate</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb43-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/flowGate.html</span></span>
+<span id="cb43-3"><a></a></span>
+<span id="cb43-4"><a></a><span class="fu">install</span>(<span class="st">"flowGate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="15/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>15/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: devtools</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb44-2"><a></a><span class="co"># Website: https://devtools.r-lib.org/</span></span>
+<span id="cb44-3"><a></a></span>
+<span id="cb44-4"><a></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="16/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>16/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: plotly</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb45-2"><a></a><span class="co"># Website: https://plotly.com/r/getting-started/</span></span>
+<span id="cb45-3"><a></a></span>
+<span id="cb45-4"><a></a><span class="fu">install.packages</span>(<span class="st">"plotly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="17/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>17/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: biosurf/cyCombine</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="co"># Location: GitHub</span></span>
+<span id="cb46-2"><a></a><span class="co"># Website: https://github.com/biosurf/cyCombine</span></span>
+<span id="cb46-3"><a></a></span>
+<span id="cb46-4"><a></a><span class="fu">install_github</span>(<span class="st">"biosurf/cyCombine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="18/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>18/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: CytoML</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="co"># Location: Bioconductor</span></span>
+<span id="cb47-2"><a></a><span class="co"># Website: https://www.bioconductor.org/packages/release/bioc/html/CytoML.html</span></span>
+<span id="cb47-3"><a></a></span>
+<span id="cb47-4"><a></a><span class="fu">install</span>(<span class="st">"CytoML"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="19/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>19/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: Rtsne</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb48-2"><a></a><span class="co"># Website: https://github.com/jkrijthe/Rtsne</span></span>
+<span id="cb48-3"><a></a></span>
+<span id="cb48-4"><a></a><span class="fu">install.packages</span>(<span class="st">"Rtsne"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="20/20">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>20/20</strong></p>
+</div>
+<div class="callout-content">
+<p>R package: uwot</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="co"># Location: CRAN</span></span>
+<span id="cb49-2"><a></a><span class="co"># Website:https://jlmelville.github.io/uwot/</span></span>
+<span id="cb49-3"><a></a></span>
+<span id="cb49-4"><a></a><span class="fu">install.packages</span>(<span class="st">"uwot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Congratulations!</strong> You have (hopefully) survived the package installation onslaught that is Week #1 of the course.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="images/Entertained.jpg" class="r-stretch"></section>
+<section class="slide level2">
+
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Remember to submit any encountered installation error screenshots to the <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions/10">Discussion page</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="wrap-up" class="title-slide slide level1 center">
+<h1>Wrap-Up</h1>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>In this session, we walked through what are R packages, where to find them, how to install them, and a bit about troubleshooting any installation errors you may encounter during the process.</p>
+<p>You then proceeded to install most of the R packages that you would need throughout the <a href="../../Schedule.html">Cytometry in R course</a>. These included tidyverse packages from the [CRAN] repository used for working with data structures and plots, as well as more cytometry focused R packages from [Bioconductor] repository.</p>
+<p>If you have any questions, or want to discuss this week’s topics in more depth with the other course participants, please head over to the <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions">Discussion</a> page and open a new topic.</p>
+<p>Next week, we will start learning about <a href="../../Schedule.html#file-paths">file paths</a>, by which we will be able to tell our computer where to find your fcs files, how to retrieve the file names, subset those that may be of particular interest, and copy them over to a new folder. In the processs, we will learn a little more about how variables, objects, and list work within R.</p>
+<p>Until then, Best Wishes!</p>
+<ul>
+<li class="fragment">David</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="../../course/01_InstallingRPackages/images/ExitImage.png" class="r-stretch"></section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="additional-resources" class="title-slide slide level1 center">
+<h1>Additional Resources</h1>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://tidytales.ca/series/2023-01-24_reproducible-data-science/posts/r-packages.html">Tidy Tales</a> An usefu beginner-friendly blogpost covering additional aspects from a different perspective.</p>
+<p><a href="https://youtu.be/dg6NvmMVQ3I?si=WfsqpO3Z-M2oG8zh">Introduction to Bioconductor</a> A talk by Martin Morgan with more information about the Bioconductor project.</p>
+<p><a href="https://r-pkgs.org/">R Packages</a> A book by Hadley Wickham and Jennifer Bryan, covering all the different internals of R packages.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="take-home-problems" class="title-slide slide level1 center">
+<h1>Take-home Problems</h1>
+<div class="fragment">
+<div title=".">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>.</strong></p>
+</div>
+<div class="callout-content">
+<p>Below you will find the optional take-home problems for Week #1. Learning how to code well requires continous practice, and that involves cycles of trying something, failing, and troubleshooting to get it working. The goal of these problems is to help you explore the topic in greater depth than the currated boundaries of this one lecture.</p>
+<p>You are more than welcome to open a <a href="https://github.com/UMGCCCFCSR/CytometryInR/discussions">Discussion</a> to engage with others in the course to discuss these questions. Once you are done tinkering, and want to get final instructor feedback on your work, place your files within a folder, and follow the instructions to submit it as a <a href="../../course/00_Homeworks/index.html#submitting-take-home-problems">Pull Request</a> to the Cytometry In R repositories homework branch.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="Problem 1">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Problem 1</strong></p>
+</div>
+<div class="callout-content">
+<p>We installed PeacoQC during this session, but we didn’t have time to explore what functions are present within the package. Using what you have learned about accessing documentation, figure out and list what functions it contains</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="Problem 2">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Problem 2</strong></p>
+</div>
+<div class="callout-content">
+<p>Take a closer look at the list of Bioconductor <a href="https://www.bioconductor.org/packages/release/BiocViews.html#___FlowCytometry">cytometry</a> packages. Report back on how many there are currently in Bioconductor, the author/maintainer with the most contributed cytometry R packages, and a couple packages that you would be interested in exploring more in-depth later in the course.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div title="Problem 3">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Problem 3</strong></p>
+</div>
+<div class="callout-content">
+<p>There is another way to install R packages, using the newer <a href="https://pak.r-lib.org/">pak</a> package. Positron uses this when installing suggested dependencies.</p>
+<p>After learning more about it via the documentation and it’s pkgdown website, I would like you to attempt to install the following three R packages using this newer method: “broom”, “cytoMEM”, “DillonHammill/CytoExploreR”.</p>
+<p>Take screenshots, and in a new <a href="../../course/00_Quarto/index.html">quarto markdown document</a>, describe how the installation process differed from what you saw for <code>install.packages()</code>, <code>install()</code> and <code>install_github()</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div style="text-align: right;">
+<p><a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img data-src="https://www.gnu.org/graphics/agplv3-with-text-162x68.png" alt="AGPL-3.0"></a> <a href="http://creativecommons.org/licenses/by-sa/4.0/"><img data-src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" alt="CC BY-SA 4.0"></a></p>
+</div>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
