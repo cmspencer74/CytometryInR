@@ -4,3 +4,5 @@ course/00_Floreada/.DS_Store
 course/00_Git/.DS_Store
 course/00_WorkstationSetup/.DS_Store
 course/00_WorkstationSetup/images/.DS_Store
+
+**/*.quarto_ipynb
