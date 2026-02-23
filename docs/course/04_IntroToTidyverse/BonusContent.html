@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="David Rach">
-<meta name="dcterms.date" content="2026-01-21">
+<meta name="dcterms.date" content="2026-02-23">
 
-<title>Installing Software on Linux – Cytometry in R</title>
+<title>Bonus Content – Cytometry in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -177,7 +177,7 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Installing Software on Linux</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Bonus Content</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -302,20 +302,12 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a>
+  <li><a href="#pull" id="toc-pull" class="nav-link active" data-scroll-target="#pull">Pull</a></li>
+  <li><a href="#case-when" id="toc-case-when" class="nav-link" data-scroll-target="#case-when">Case-When</a></li>
+  <li><a href="#quasiquosure" id="toc-quasiquosure" class="nav-link" data-scroll-target="#quasiquosure">Quasiquosure</a>
   <ul>
-  <li><a href="#debian-based-distros" id="toc-debian-based-distros" class="nav-link" data-scroll-target="#debian-based-distros">Debian-based Distros</a>
-  <ul class="collapse">
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r">Installing R</a></li>
+  <li><a href="#selecting-columns-base-r" id="toc-selecting-columns-base-r" class="nav-link" data-scroll-target="#selecting-columns-base-r">Selecting Columns (Base R)</a></li>
   </ul></li>
-  <li><a href="#installing-git" id="toc-installing-git" class="nav-link" data-scroll-target="#installing-git">Installing Git</a></li>
-  <li><a href="#installing-positron" id="toc-installing-positron" class="nav-link" data-scroll-target="#installing-positron">Installing Positron</a></li>
-  </ul></li>
-  <li><a href="#connecting-github-and-positron" id="toc-connecting-github-and-positron" class="nav-link" data-scroll-target="#connecting-github-and-positron">Connecting GitHub and Positron</a></li>
-  <li><a href="#new-folder-from-git" id="toc-new-folder-from-git" class="nav-link" data-scroll-target="#new-folder-from-git">New Folder from Git</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -324,7 +316,7 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing Software on Linux</h1>
+<h1 class="title">Bonus Content</h1>
 </div>
 
 
@@ -341,7 +333,7 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 21, 2026</p>
+      <p class="date">February 23, 2026</p>
     </div>
   </div>
   
@@ -357,227 +349,362 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
 <div style="text-align: right;">
 <p><a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="https://img.shields.io/badge/license-AGPLv3-blue.png" class="img-fluid" alt="AGPL-3.0"></a> <a href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" class="img-fluid" alt="CC BY-SA 4.0"></a></p>
 </div>
-<p>For the YouTube livestream recording, see <a href="https://www.youtube.com/live/xZtvnQ6OsWM?si=1Vo-ajnf33HHHePJ">here</a></p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/xZtvnQ6OsWM?si=1Vo-ajnf33HHHePJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
-</iframe>
-<p>For screen-shot slides, click <a href="../../course/00_WorkstationSetup/LinuxSlides.html">here</a></p>
-<p>This is the software installation walkthrough for those whose computers are running Linux. First off, welcome! Based on our pre-course interest form, there was a suprising number of you daily-drivers out there! However, a CytometryInR interest form is unlikely to be representative of the general population, so please stash all Year of the Linux desktop banners until further notice.</p>
-<p><img src="../../course/00_WorkstationSetup/images/ComputerOS.png" class="img-fluid" style="width:100.0%"></p>
-<p><br></p>
-<hr>
-<section id="background" class="level1">
-<h1>Background</h1>
-<p>If you are daily-driving Linux, you are likely not a stranger to the process of getting software installed on your particular distribution.</p>
-<p>When it comes to installing <a href="https://www.r-project.org/">R website</a>, the R project supports packaging formats for both Debian (including Ubuntu, Linux Mint, etc) and RHEL (including Fedora) based-distributions. The supported branch for SUSE has not been active since 2012. This is similarly the case when installing <a href="https://positron.posit.co/">Positron</a>. Depending on your distribution, you might also need to install <a href="https://git-scm.com/">Git</a> via your package manager.</p>
-<p>I daily-drive Debian stable (Trixie), so this walk-through documents the installation process for the Debian branch. I plan to circle back with a Fedora version, but if that doesn’t occur by the publishing time, I refer you to the R for Linux <a href="https://cran.r-project.org/bin/linux/fedora/#fedora">documentation</a> to help get you started.</p>
-<p><br></p>
-<hr>
-</section>
-<section id="getting-started" class="level1">
-<h1>Getting Started</h1>
-<section id="debian-based-distros" class="level2">
-<h2 class="anchored" data-anchor-id="debian-based-distros">Debian-based Distros</h2>
-<section id="installing-r" class="level3">
-<h3 class="anchored" data-anchor-id="installing-r">Installing R</h3>
-<p>To get started, first navigate to the <a href="https://www.r-project.org/">R website</a>. Once there, click on <a href="https://cran.r-project.org/mirrors.html">Download R</a> option towards the top of the page.</p>
-<p><img src="images/Linux/01_RLanding.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>On the next screen, you will need to select a mirror from which to download the software from. You can either select the closest geographic location (which may be faster) or alternatively just select the <a href="https://cloud.r-project.org/">Cloud</a> option which should redirect you.</p>
-<p><img src="images/Linux/02_Mirror.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Once this is done, select your Linux Distro (or one that shares your package managers format).</p>
-<p><img src="images/Linux/03_Debian.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>On the landing page, you will find a bunch of relevant installation information, which is worthwhile giving a read-through when you have time.</p>
-<p><img src="images/Linux/04_Landing.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>The process to successfully install R can be summarized as follows:</p>
-<p>Update apt/sources.list to include the CRAN repository (allowing access to R packages)</p>
-<p><img src="images/Linux/08_AptSources.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Since we are running on Debian stable (Trixie), we would add the following line to sources.list</p>
-<p><img src="images/Linux/07_TrixieRepo.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>So in practice, open sources.list:</p>
-<p><img src="images/Linux/09_EditAptSources.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Paste the line, and “Ctrl + O”; “Enter”; “Ctrl + X” to save the changes.</p>
-<p><img src="images/Linux/10_UpdatedEditAptSources.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Next, we will need to retrieve the keyID used to sign. This can be fetched from Ubuntu via the terminal.</p>
-<p><img src="images/Linux/06_SecureAptKey.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p><img src="images/Linux/12_AptKey.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Then we need to export and write it</p>
-<p><img src="images/Linux/12_AptKey2.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Which if successful, will display the public key.</p>
-<p><img src="images/Linux/12_PublicKey.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>With the above set up, we can proceed via our apt package manager to install both r-base and r-base-dev (which contains the equivalent of Rtools for Windows, or Xcode Command Line Tools for macOS).</p>
-<p><img src="images/Linux/05_BaseR.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p><img src="images/Linux/13_InstallBaseAndDev.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p><img src="images/Linux/13_Install.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>And if all goes well, R should now be installed.</p>
-</section>
-</section>
-<section id="installing-git" class="level2">
-<h2 class="anchored" data-anchor-id="installing-git">Installing Git</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sudo apt install git</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>thefilepath <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, <span class="st">"Dataset.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>thefilepath</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data/Dataset.csv"</code></pre>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file=</span>thefilepath, <span class="at">check.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "bid"               "timepoint"         "Condition"        
+ [4] "Date"              "infant_sex"        "ptype"            
+ [7] "root"              "singletsFSC"       "singletsSSC"      
+[10] "singletsSSCB"      "CD45"              "NotMonocytes"     
+[13] "nonDebris"         "lymphocytes"       "live"             
+[16] "Dump+"             "Dump-"             "Tcells"           
+[19] "Vd2+"              "Vd2-"              "Va7.2+"           
+[22] "Va7.2-"            "CD4+"              "CD4-"             
+[25] "CD8+"              "CD8-"              "Tcells_count"     
+[28] "lymphocytes_count" "Monocytes"         "Debris"           
+[31] "CD45_count"       </code></pre>
+</div>
+</div>
+<section id="pull" class="level2">
+<h2 class="anchored" data-anchor-id="pull">Pull</h2>
 </section>
-<section id="installing-positron" class="level2">
-<h2 class="anchored" data-anchor-id="installing-positron">Installing Positron</h2>
-<p>Finally, you will need to install <a href="https://positron.posit.co/">Positron</a>. It will be the integrated development environment (IDE) we will be using for the course.</p>
-<p>First, navigate to their <a href="https://positron.posit.co/">homepage</a>, and select the blue Download option button on the upper-right.</p>
-<p><img src="images/Windows/25_Positron.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>You will then need to accept the Elastic License agreement to use the software (we will cover this source-available license type and what it does later in the course).</p>
-<p><img src="images/Linux/15_TermsService.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>With the license accepted, you will be able to select distribution and architecture.</p>
-<p><img src="images/Linux/16_LinuxFlavor.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Once the Download completes, proceed to install the .deb package as you would nornally. GUI example via Discover below.</p>
-<p><img src="images/Linux/17_DebPackageInstall.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Depending on your configurations, you may be asked to exert your sudo powers.</p>
-<p><img src="images/Linux/18_Password.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Once this completes, you should now be able to launch the software for the first time.</p>
-<p><img src="images/Linux/19_InstallSuccess.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
+<section id="case-when" class="level2">
+<h2 class="anchored" data-anchor-id="case-when">Case-When</h2>
+<p>Case-when is an useful function, but may be a bit much to try to teach in the main segment. Basically, when the condition on the left side of the ~ is fulfilled, it will execute what is being specified on the right hand side.</p>
+<p>In turn, we can combine these together by adding a “,”. I tend to use this mutate str_detect case_when combination when encountering messy data out in the while where I need to selectively change particular cell values in a consistent reproducible manner</p>
 </section>
-</section>
-<section id="connecting-github-and-positron" class="level1">
-<h1>Connecting GitHub and Positron</h1>
-<p>Now that you have all the software installed, we need to make sure that everything is communicating properly with each other. To do this, we will start by making sure your GitHub account and Positron are connected.</p>
-<p>When opening Positron for the first time, you will encounter the following view:</p>
-<p><img src="images/Linux/20_PositronStart.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>We will go over the various aspects of using Positron in the next <a href="../../course/00_Positron/index.html">section</a>. For now select the “Start Session” button on the upper right.</p>
-<p><img src="images/Linux/20_PositronStart.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Then select the most recent/up-to-date R version.</p>
-<p><img src="images/Linux/21_R.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>R will proceed to activate, and you will see a message appear in the bottom center window (ie. console)</p>
-<p><img src="images/Linux/22_RSuccess.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Congratulations, we now know R is working correctly. Next up, connecting your GitHub account to Positron. To make this process easier, first log into your <a href="https://github.com/">GitHub</a> account from your preferred web browser.</p>
-<p>Once this is done, return to Positron, and click on the profile Icon and select “Sign with GitHub” option.</p>
-<p><img src="images/Linux/23_GitHub.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Positron will provide a popup containing a code you will need to give to GitHub to set up authentication. Proceed to click on the “Copy &amp; Continue to GitHub” button.</p>
-<p><img src="images/Linux/24_Code.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>If you are already signed in, it will ask which account you want to connect Positron with. Select your GitHub account.</p>
-<p><img src="images/Linux/25_GitHubAccount.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>You will then be prompted to paste the one-time code provided by Positron. Once pasted, click on Continue.</p>
-<p><img src="images/Linux/26_EnterNumber.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>And select “Authorize posit-dev” to authorize Positron to interact with your GitHub Account.</p>
-<p><img src="images/Linux/27_Confirm.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>And if all works out, you should see the following succes page</p>
-<p><img src="images/Linux/28_ConfirmationPage.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Returning to Positron, check the profile tab on the lower left and verify that it now shows your GitHub account. If it does, congrats! If not, close Positron, check the tab again, and repeat the above one-time code steps if needed.</p>
-<p><img src="images/Linux/29_PositronSuccess.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-</section>
-<section id="new-folder-from-git" class="level1">
-<h1>New Folder from Git</h1>
-<p>With <a href="https://github.com/">GitHub</a> and Positron now connected, we will bring your two repositories (the README and the fork of CytometryInR) from GitHub to your local computer.</p>
-<p>To this, first navigate to the Folder icon on the upper-right, and select the “New Folder from Git” option</p>
-<p><img src="images/MacOS/24.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>Lets first bring in your forked version of the Cytometry in R repository. Depending on your GitHub username, you would either need to copy the URL from your browser, or swap in your username in place of UMGCCCFCSR in “https://github.com/UMGCCCFCSR/CytometryInR”</p>
-<p><img src="images/FolderFromGit1.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>You will also be asked for a location to store your project folder. It is best to save the folder locally (avoid using OneDrive or other cloud locations for now), as it makes things easier to save or modify without running into permission issues. For most of our course examples, we will be saving our Project Folders under the Documents Folder.</p>
-<p><img src="images/Import2.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>You may encounter a pop-up asking whether you trust the authors for that particular folder. For your own projects, you are the author, so go ahead and select Yes. Selecting No is a good precaution when bringing in a random GitHub project that you haven’t had time to properly vet.</p>
-<p><img src="images/MacOS/28.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>And with that done, you should now see the forked Cytometry in R course contents appear within Positron.</p>
-<p><img src="images/Import2Done.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>We will now repeat the process to bring in youir GitHub profile’s ReadMe repository. Depending on your GitHub username, you would either need to copy the URL from your browser, or swap in your username twice in place for each UMGCCCFCSR: “https://github.com/UMGCCCFCSR/UMGCCCFCSR”</p>
-<p><img src="images/FolderFromGit2.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>After pasting the URL, and selecting the folder to save your project folder to (Documents in our case), select OK.</p>
-<p><img src="images/Import2.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-<p>And after a quick import you should now see your ReadMe repository files available and ready to be modified on your local computer.</p>
-<p><img src="images/Import2Done.png" class="img-fluid"></p>
-<p><br></p>
-<hr>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap-up</h1>
-<p>In this walkthrough, we installed R, Rtools, Git and Positron. We also made sure to connect Positron and your GitHub account, and brought copies of your repositories into local project folders. With this, you now have on your workstation the major pieces of software needed for the course.</p>
-<p>In the <a href="../../course/00_Positron/">next section</a>, we will delve into how to use Positron, and explore more how to use the connection you set up with GitHub to send <a href="../../course/00_Git/">changes</a> from your local repositories back to GitHub.</p>
-<p><br></p>
-<hr>
-</section>
-<section id="additional-resources" class="level1">
-<h1>Additional Resources</h1>
-<p><a href="https://youtu.be/lC4d4EpMMxg?si=9TeFkwFzrRbzA-Ma">How to Download and Install Software on Linux</a></p>
-<p><a href="https://youtu.be/D6CunpqF04E?si=jeU6-XiSRj-ygDf_">Riffomonas Project: Installing R, RStudio, and packages for Windows and Mac OS X (CC077)</a></p>
-<p><a href="https://posit.co/blog/a-quick-tour-of-positron/">A brief tour of Positron</a></p>
-<p><a href="https://youtu.be/r8jQ9hVA2qs?si=jNastI7kNiGHHG9O">A brief introduction to Git for beginners</a></p>
+<section id="quasiquosure" class="level1">
+<h1>Quasiquosure</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>DateColumn <span class="ot">&lt;-</span> <span class="fu">select</span>(Data, Date)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>DateColumn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          Date
+1   2025-07-26
+2   2025-07-26
+3   2025-07-26
+4   2025-07-26
+5   2025-07-26
+6   2025-07-26
+7   2025-07-26
+8   2025-07-26
+9   2025-07-26
+10  2025-07-26
+11  2025-07-26
+12  2025-07-26
+13  2025-07-26
+14  2025-07-26
+15  2025-07-26
+16  2025-07-26
+17  2025-07-26
+18  2025-07-26
+19  2025-07-26
+20  2025-07-26
+21  2025-07-26
+22  2025-07-26
+23  2025-07-26
+24  2025-07-26
+25  2025-07-26
+26  2025-07-26
+27  2025-07-29
+28  2025-07-29
+29  2025-07-29
+30  2025-07-29
+31  2025-07-29
+32  2025-07-29
+33  2025-07-29
+34  2025-07-29
+35  2025-07-29
+36  2025-07-29
+37  2025-07-29
+38  2025-07-29
+39  2025-07-29
+40  2025-07-29
+41  2025-07-29
+42  2025-07-29
+43  2025-07-29
+44  2025-07-29
+45  2025-07-29
+46  2025-07-29
+47  2025-07-29
+48  2025-07-29
+49  2025-07-31
+50  2025-07-31
+51  2025-07-31
+52  2025-07-31
+53  2025-07-31
+54  2025-07-31
+55  2025-07-31
+56  2025-07-31
+57  2025-07-31
+58  2025-07-31
+59  2025-07-31
+60  2025-07-31
+61  2025-07-31
+62  2025-07-31
+63  2025-07-31
+64  2025-07-31
+65  2025-07-31
+66  2025-07-31
+67  2025-07-31
+68  2025-07-31
+69  2025-07-31
+70  2025-07-31
+71  2025-07-31
+72  2025-07-31
+73  2025-07-31
+74  2025-07-31
+75  2025-07-31
+76  2025-08-05
+77  2025-08-05
+78  2025-08-05
+79  2025-08-05
+80  2025-08-05
+81  2025-08-05
+82  2025-08-05
+83  2025-08-05
+84  2025-08-05
+85  2025-08-05
+86  2025-08-05
+87  2025-08-05
+88  2025-08-05
+89  2025-08-05
+90  2025-08-05
+91  2025-08-05
+92  2025-08-05
+93  2025-08-05
+94  2025-08-05
+95  2025-08-05
+96  2025-08-05
+97  2025-08-05
+98  2025-08-05
+99  2025-08-07
+100 2025-08-07
+101 2025-08-07
+102 2025-08-07
+103 2025-08-07
+104 2025-08-07
+105 2025-08-07
+106 2025-08-07
+107 2025-08-07
+108 2025-08-07
+109 2025-08-07
+110 2025-08-07
+111 2025-08-07
+112 2025-08-07
+113 2025-08-07
+114 2025-08-07
+115 2025-08-07
+116 2025-08-07
+117 2025-08-07
+118 2025-08-07
+119 2025-08-07
+120 2025-08-07
+121 2025-08-07
+122 2025-08-07
+123 2025-08-07
+124 2025-08-07
+125 2025-08-22
+126 2025-08-22
+127 2025-08-22
+128 2025-08-22
+129 2025-08-22
+130 2025-08-22
+131 2025-08-22
+132 2025-08-22
+133 2025-08-22
+134 2025-08-22
+135 2025-08-22
+136 2025-08-22
+137 2025-08-22
+138 2025-08-22
+139 2025-08-22
+140 2025-08-22
+141 2025-08-22
+142 2025-08-22
+143 2025-08-22
+144 2025-08-22
+145 2025-08-22
+146 2025-08-22
+147 2025-08-22
+148 2025-08-22
+149 2025-08-22
+150 2025-08-22
+151 2025-08-22
+152 2025-08-28
+153 2025-08-28
+154 2025-08-28
+155 2025-08-28
+156 2025-08-28
+157 2025-08-28
+158 2025-08-28
+159 2025-08-28
+160 2025-08-28
+161 2025-08-28
+162 2025-08-28
+163 2025-08-28
+164 2025-08-28
+165 2025-08-28
+166 2025-08-28
+167 2025-08-28
+168 2025-08-28
+169 2025-08-28
+170 2025-08-28
+171 2025-08-28
+172 2025-08-28
+173 2025-08-28
+174 2025-08-28
+175 2025-08-28
+176 2025-08-28
+177 2025-08-28
+178 2025-08-28
+179 2025-08-30
+180 2025-08-30
+181 2025-08-30
+182 2025-08-30
+183 2025-08-30
+184 2025-08-30
+185 2025-08-30
+186 2025-08-30
+187 2025-08-30
+188 2025-08-30
+189 2025-08-30
+190 2025-08-30
+191 2025-08-30
+192 2025-08-30
+193 2025-08-30
+194 2025-08-30
+195 2025-08-30
+196 2025-08-30</code></pre>
+</div>
+</div>
+<section id="selecting-columns-base-r" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-columns-base-r">Selecting Columns (Base R)</h2>
+<p>As we saw <a href="../../course/03_InsideFCSFile/index.html">last week</a>, there are multiple ways to select values from particular columns in base R. If we had wanted to retrieve the “Date” column, why not first identify its index position, and use [,] to extract the underlying data?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "bid"               "timepoint"         "Condition"        
+ [4] "Date"              "infant_sex"        "ptype"            
+ [7] "root"              "singletsFSC"       "singletsSSC"      
+[10] "singletsSSCB"      "CD45"              "NotMonocytes"     
+[13] "nonDebris"         "lymphocytes"       "live"             
+[16] "Dump+"             "Dump-"             "Tcells"           
+[19] "Vd2+"              "Vd2-"              "Va7.2+"           
+[22] "Va7.2-"            "CD4+"              "CD4-"             
+[25] "CD8+"              "CD8-"              "Tcells_count"     
+[28] "lymphocytes_count" "Monocytes"         "Debris"           
+[31] "CD45_count"       </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Data)[<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Date"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>DataColumn <span class="ot">&lt;-</span> Data[,<span class="dv">4</span>] <span class="co"># Column specified after the ,</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>DataColumn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+  [6] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [11] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [16] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [21] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [26] "2025-07-26" "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29"
+ [31] "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29"
+ [36] "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29"
+ [41] "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-29"
+ [46] "2025-07-29" "2025-07-29" "2025-07-29" "2025-07-31" "2025-07-31"
+ [51] "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31"
+ [56] "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31"
+ [61] "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31"
+ [66] "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31"
+ [71] "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31" "2025-07-31"
+ [76] "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05"
+ [81] "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05"
+ [86] "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05"
+ [91] "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-05"
+ [96] "2025-08-05" "2025-08-05" "2025-08-05" "2025-08-07" "2025-08-07"
+[101] "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07"
+[106] "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07"
+[111] "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07"
+[116] "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07"
+[121] "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-07" "2025-08-22"
+[126] "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22"
+[131] "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22"
+[136] "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22"
+[141] "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22"
+[146] "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22" "2025-08-22"
+[151] "2025-08-22" "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28"
+[156] "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28"
+[161] "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28"
+[166] "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28"
+[171] "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-28"
+[176] "2025-08-28" "2025-08-28" "2025-08-28" "2025-08-30" "2025-08-30"
+[181] "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30"
+[186] "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30"
+[191] "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30" "2025-08-30"
+[196] "2025-08-30"</code></pre>
+</div>
+</div>
+<p>However, looking at the output, we see this looks like the values, not a column. Our suspicions are confirmed when running DataColumn</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DataColumn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:196] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" ...</code></pre>
+</div>
+</div>
+<p>This is similarly the case when we use the $ accessor.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>DataColumn <span class="ot">&lt;-</span> Data<span class="sc">$</span>Date</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(DataColumn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> chr [1:196] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DataColumn, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2025-07-26" "2025-07-26" "2025-07-26"</code></pre>
+</div>
+</div>
+<p>By contrast, when selecting two columns, the structure is maintained.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>TwoColumns <span class="ot">&lt;-</span> Data[,<span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Why is the data.frame column structure lost in base R when isolating a single data.frame column? And who thought to make it that convoluted? If we were an R course in early 2010s, we might go into an explanation, but fortunately, we don’t need to understand why, we have the <code>dplyr</code> R package to rescue us.</p>
 <div style="text-align: right;">
 <p><a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="https://www.gnu.org/graphics/agplv3-with-text-162x68.png" class="img-fluid" alt="AGPL-3.0"></a> <a href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://licensebuttons.net/l/by-sa/4.0/88x31.png" class="img-fluid" alt="CC BY-SA 4.0"></a></p>
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
