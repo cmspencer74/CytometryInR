@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../Schedule.html" rel="next">
+<link href="../../course/05_GatingSets/index.html" rel="next">
 <link href="../../course/03_InsideFCSFile/index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -280,6 +280,12 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
  <span class="menu-text">04 - Intro to Tidyverse</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course/05_GatingSets/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05 - Gating Sets</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -367,8 +373,10 @@ gtag('config', 'G-LZ35J3XE4D', { 'anonymize_ip': true});
 <div style="text-align: right;">
 <p><a href="https://www.gnu.org/licenses/agpl-3.0.en.html"><img src="https://img.shields.io/badge/license-AGPLv3-blue.png" class="img-fluid" alt="AGPL-3.0"></a> <a href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg" class="img-fluid" alt="CC BY-SA 4.0"></a></p>
 </div>
-<p>For the YouTube livestream schedule, see <a href="https://www.youtube.com/@cytometryinr">here</a></p>
-<p>For screen-shot slides, click <a href="">here</a></p>
+<p>For the YouTube livestream recording, see <a href="https://youtu.be/luC7SY4RJcU?t=204">here</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/luC7SY4RJcU?si=av1kkp90kJMeY5RR&amp;start=204" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+<p>For screen-shot slides, click <a href="../../course/04_IntroToTidyverse/slides.html">here</a></p>
 <section id="background" class="level1">
 <h1>Background</h1>
 <p>Within our daily workflows as cytometrist, after acquiring data on our respective instruments, we begin analyzing the resulting datasets. After implementing various workflows, we then export data for downstream statistical analysis.</p>
@@ -722,205 +730,10 @@ Reminder
 <p>We will start with the <code>select()</code> function. It is used to “select” a column from a data.frame type object. In the simplest usage, we provide the name of our data.frame variable/object as the first argument after the opening parenthesis. This is then followed by the name of the column we want to select as the second argument (let’s place around the “” around the column name for now)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>DateColumn <span class="ot">&lt;-</span> <span class="fu">select</span>(Data, <span class="st">"Date"</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>DateColumn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>DateColumn[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          Date
-1   2025-07-26
-2   2025-07-26
-3   2025-07-26
-4   2025-07-26
-5   2025-07-26
-6   2025-07-26
-7   2025-07-26
-8   2025-07-26
-9   2025-07-26
-10  2025-07-26
-11  2025-07-26
-12  2025-07-26
-13  2025-07-26
-14  2025-07-26
-15  2025-07-26
-16  2025-07-26
-17  2025-07-26
-18  2025-07-26
-19  2025-07-26
-20  2025-07-26
-21  2025-07-26
-22  2025-07-26
-23  2025-07-26
-24  2025-07-26
-25  2025-07-26
-26  2025-07-26
-27  2025-07-29
-28  2025-07-29
-29  2025-07-29
-30  2025-07-29
-31  2025-07-29
-32  2025-07-29
-33  2025-07-29
-34  2025-07-29
-35  2025-07-29
-36  2025-07-29
-37  2025-07-29
-38  2025-07-29
-39  2025-07-29
-40  2025-07-29
-41  2025-07-29
-42  2025-07-29
-43  2025-07-29
-44  2025-07-29
-45  2025-07-29
-46  2025-07-29
-47  2025-07-29
-48  2025-07-29
-49  2025-07-31
-50  2025-07-31
-51  2025-07-31
-52  2025-07-31
-53  2025-07-31
-54  2025-07-31
-55  2025-07-31
-56  2025-07-31
-57  2025-07-31
-58  2025-07-31
-59  2025-07-31
-60  2025-07-31
-61  2025-07-31
-62  2025-07-31
-63  2025-07-31
-64  2025-07-31
-65  2025-07-31
-66  2025-07-31
-67  2025-07-31
-68  2025-07-31
-69  2025-07-31
-70  2025-07-31
-71  2025-07-31
-72  2025-07-31
-73  2025-07-31
-74  2025-07-31
-75  2025-07-31
-76  2025-08-05
-77  2025-08-05
-78  2025-08-05
-79  2025-08-05
-80  2025-08-05
-81  2025-08-05
-82  2025-08-05
-83  2025-08-05
-84  2025-08-05
-85  2025-08-05
-86  2025-08-05
-87  2025-08-05
-88  2025-08-05
-89  2025-08-05
-90  2025-08-05
-91  2025-08-05
-92  2025-08-05
-93  2025-08-05
-94  2025-08-05
-95  2025-08-05
-96  2025-08-05
-97  2025-08-05
-98  2025-08-05
-99  2025-08-07
-100 2025-08-07
-101 2025-08-07
-102 2025-08-07
-103 2025-08-07
-104 2025-08-07
-105 2025-08-07
-106 2025-08-07
-107 2025-08-07
-108 2025-08-07
-109 2025-08-07
-110 2025-08-07
-111 2025-08-07
-112 2025-08-07
-113 2025-08-07
-114 2025-08-07
-115 2025-08-07
-116 2025-08-07
-117 2025-08-07
-118 2025-08-07
-119 2025-08-07
-120 2025-08-07
-121 2025-08-07
-122 2025-08-07
-123 2025-08-07
-124 2025-08-07
-125 2025-08-22
-126 2025-08-22
-127 2025-08-22
-128 2025-08-22
-129 2025-08-22
-130 2025-08-22
-131 2025-08-22
-132 2025-08-22
-133 2025-08-22
-134 2025-08-22
-135 2025-08-22
-136 2025-08-22
-137 2025-08-22
-138 2025-08-22
-139 2025-08-22
-140 2025-08-22
-141 2025-08-22
-142 2025-08-22
-143 2025-08-22
-144 2025-08-22
-145 2025-08-22
-146 2025-08-22
-147 2025-08-22
-148 2025-08-22
-149 2025-08-22
-150 2025-08-22
-151 2025-08-22
-152 2025-08-28
-153 2025-08-28
-154 2025-08-28
-155 2025-08-28
-156 2025-08-28
-157 2025-08-28
-158 2025-08-28
-159 2025-08-28
-160 2025-08-28
-161 2025-08-28
-162 2025-08-28
-163 2025-08-28
-164 2025-08-28
-165 2025-08-28
-166 2025-08-28
-167 2025-08-28
-168 2025-08-28
-169 2025-08-28
-170 2025-08-28
-171 2025-08-28
-172 2025-08-28
-173 2025-08-28
-174 2025-08-28
-175 2025-08-28
-176 2025-08-28
-177 2025-08-28
-178 2025-08-28
-179 2025-08-30
-180 2025-08-30
-181 2025-08-30
-182 2025-08-30
-183 2025-08-30
-184 2025-08-30
-185 2025-08-30
-186 2025-08-30
-187 2025-08-30
-188 2025-08-30
-189 2025-08-30
-190 2025-08-30
-191 2025-08-30
-192 2025-08-30
-193 2025-08-30
-194 2025-08-30
-195 2025-08-30
-196 2025-08-30</code></pre>
+<pre><code> [1] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [6] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"</code></pre>
 </div>
 </div>
 <p>This results in the column being selected, resulting in the new object containing only that subsetted out column from the original Data object.</p>
@@ -929,205 +742,10 @@ Reminder
 <p>While the above line of code works to select a column, when you encounter <code>select()</code> out in the wild, it will more often be in a line of code that looks like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>DateColumn <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"Date"</span>)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>DateColumn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>DateColumn[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          Date
-1   2025-07-26
-2   2025-07-26
-3   2025-07-26
-4   2025-07-26
-5   2025-07-26
-6   2025-07-26
-7   2025-07-26
-8   2025-07-26
-9   2025-07-26
-10  2025-07-26
-11  2025-07-26
-12  2025-07-26
-13  2025-07-26
-14  2025-07-26
-15  2025-07-26
-16  2025-07-26
-17  2025-07-26
-18  2025-07-26
-19  2025-07-26
-20  2025-07-26
-21  2025-07-26
-22  2025-07-26
-23  2025-07-26
-24  2025-07-26
-25  2025-07-26
-26  2025-07-26
-27  2025-07-29
-28  2025-07-29
-29  2025-07-29
-30  2025-07-29
-31  2025-07-29
-32  2025-07-29
-33  2025-07-29
-34  2025-07-29
-35  2025-07-29
-36  2025-07-29
-37  2025-07-29
-38  2025-07-29
-39  2025-07-29
-40  2025-07-29
-41  2025-07-29
-42  2025-07-29
-43  2025-07-29
-44  2025-07-29
-45  2025-07-29
-46  2025-07-29
-47  2025-07-29
-48  2025-07-29
-49  2025-07-31
-50  2025-07-31
-51  2025-07-31
-52  2025-07-31
-53  2025-07-31
-54  2025-07-31
-55  2025-07-31
-56  2025-07-31
-57  2025-07-31
-58  2025-07-31
-59  2025-07-31
-60  2025-07-31
-61  2025-07-31
-62  2025-07-31
-63  2025-07-31
-64  2025-07-31
-65  2025-07-31
-66  2025-07-31
-67  2025-07-31
-68  2025-07-31
-69  2025-07-31
-70  2025-07-31
-71  2025-07-31
-72  2025-07-31
-73  2025-07-31
-74  2025-07-31
-75  2025-07-31
-76  2025-08-05
-77  2025-08-05
-78  2025-08-05
-79  2025-08-05
-80  2025-08-05
-81  2025-08-05
-82  2025-08-05
-83  2025-08-05
-84  2025-08-05
-85  2025-08-05
-86  2025-08-05
-87  2025-08-05
-88  2025-08-05
-89  2025-08-05
-90  2025-08-05
-91  2025-08-05
-92  2025-08-05
-93  2025-08-05
-94  2025-08-05
-95  2025-08-05
-96  2025-08-05
-97  2025-08-05
-98  2025-08-05
-99  2025-08-07
-100 2025-08-07
-101 2025-08-07
-102 2025-08-07
-103 2025-08-07
-104 2025-08-07
-105 2025-08-07
-106 2025-08-07
-107 2025-08-07
-108 2025-08-07
-109 2025-08-07
-110 2025-08-07
-111 2025-08-07
-112 2025-08-07
-113 2025-08-07
-114 2025-08-07
-115 2025-08-07
-116 2025-08-07
-117 2025-08-07
-118 2025-08-07
-119 2025-08-07
-120 2025-08-07
-121 2025-08-07
-122 2025-08-07
-123 2025-08-07
-124 2025-08-07
-125 2025-08-22
-126 2025-08-22
-127 2025-08-22
-128 2025-08-22
-129 2025-08-22
-130 2025-08-22
-131 2025-08-22
-132 2025-08-22
-133 2025-08-22
-134 2025-08-22
-135 2025-08-22
-136 2025-08-22
-137 2025-08-22
-138 2025-08-22
-139 2025-08-22
-140 2025-08-22
-141 2025-08-22
-142 2025-08-22
-143 2025-08-22
-144 2025-08-22
-145 2025-08-22
-146 2025-08-22
-147 2025-08-22
-148 2025-08-22
-149 2025-08-22
-150 2025-08-22
-151 2025-08-22
-152 2025-08-28
-153 2025-08-28
-154 2025-08-28
-155 2025-08-28
-156 2025-08-28
-157 2025-08-28
-158 2025-08-28
-159 2025-08-28
-160 2025-08-28
-161 2025-08-28
-162 2025-08-28
-163 2025-08-28
-164 2025-08-28
-165 2025-08-28
-166 2025-08-28
-167 2025-08-28
-168 2025-08-28
-169 2025-08-28
-170 2025-08-28
-171 2025-08-28
-172 2025-08-28
-173 2025-08-28
-174 2025-08-28
-175 2025-08-28
-176 2025-08-28
-177 2025-08-28
-178 2025-08-28
-179 2025-08-30
-180 2025-08-30
-181 2025-08-30
-182 2025-08-30
-183 2025-08-30
-184 2025-08-30
-185 2025-08-30
-186 2025-08-30
-187 2025-08-30
-188 2025-08-30
-189 2025-08-30
-190 2025-08-30
-191 2025-08-30
-192 2025-08-30
-193 2025-08-30
-194 2025-08-30
-195 2025-08-30
-196 2025-08-30</code></pre>
+<pre><code> [1] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
+ [6] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"</code></pre>
 </div>
 </div>
 <p>… <strong>“What in the world is that thing |&gt; ?”</strong> …</p>
@@ -1160,209 +778,10 @@ Reminder
 <p>In summary, contents of Data are passed to the pipe, and select runs on those contents to select the Date column</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"Date"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>          Date
-1   2025-07-26
-2   2025-07-26
-3   2025-07-26
-4   2025-07-26
-5   2025-07-26
-6   2025-07-26
-7   2025-07-26
-8   2025-07-26
-9   2025-07-26
-10  2025-07-26
-11  2025-07-26
-12  2025-07-26
-13  2025-07-26
-14  2025-07-26
-15  2025-07-26
-16  2025-07-26
-17  2025-07-26
-18  2025-07-26
-19  2025-07-26
-20  2025-07-26
-21  2025-07-26
-22  2025-07-26
-23  2025-07-26
-24  2025-07-26
-25  2025-07-26
-26  2025-07-26
-27  2025-07-29
-28  2025-07-29
-29  2025-07-29
-30  2025-07-29
-31  2025-07-29
-32  2025-07-29
-33  2025-07-29
-34  2025-07-29
-35  2025-07-29
-36  2025-07-29
-37  2025-07-29
-38  2025-07-29
-39  2025-07-29
-40  2025-07-29
-41  2025-07-29
-42  2025-07-29
-43  2025-07-29
-44  2025-07-29
-45  2025-07-29
-46  2025-07-29
-47  2025-07-29
-48  2025-07-29
-49  2025-07-31
-50  2025-07-31
-51  2025-07-31
-52  2025-07-31
-53  2025-07-31
-54  2025-07-31
-55  2025-07-31
-56  2025-07-31
-57  2025-07-31
-58  2025-07-31
-59  2025-07-31
-60  2025-07-31
-61  2025-07-31
-62  2025-07-31
-63  2025-07-31
-64  2025-07-31
-65  2025-07-31
-66  2025-07-31
-67  2025-07-31
-68  2025-07-31
-69  2025-07-31
-70  2025-07-31
-71  2025-07-31
-72  2025-07-31
-73  2025-07-31
-74  2025-07-31
-75  2025-07-31
-76  2025-08-05
-77  2025-08-05
-78  2025-08-05
-79  2025-08-05
-80  2025-08-05
-81  2025-08-05
-82  2025-08-05
-83  2025-08-05
-84  2025-08-05
-85  2025-08-05
-86  2025-08-05
-87  2025-08-05
-88  2025-08-05
-89  2025-08-05
-90  2025-08-05
-91  2025-08-05
-92  2025-08-05
-93  2025-08-05
-94  2025-08-05
-95  2025-08-05
-96  2025-08-05
-97  2025-08-05
-98  2025-08-05
-99  2025-08-07
-100 2025-08-07
-101 2025-08-07
-102 2025-08-07
-103 2025-08-07
-104 2025-08-07
-105 2025-08-07
-106 2025-08-07
-107 2025-08-07
-108 2025-08-07
-109 2025-08-07
-110 2025-08-07
-111 2025-08-07
-112 2025-08-07
-113 2025-08-07
-114 2025-08-07
-115 2025-08-07
-116 2025-08-07
-117 2025-08-07
-118 2025-08-07
-119 2025-08-07
-120 2025-08-07
-121 2025-08-07
-122 2025-08-07
-123 2025-08-07
-124 2025-08-07
-125 2025-08-22
-126 2025-08-22
-127 2025-08-22
-128 2025-08-22
-129 2025-08-22
-130 2025-08-22
-131 2025-08-22
-132 2025-08-22
-133 2025-08-22
-134 2025-08-22
-135 2025-08-22
-136 2025-08-22
-137 2025-08-22
-138 2025-08-22
-139 2025-08-22
-140 2025-08-22
-141 2025-08-22
-142 2025-08-22
-143 2025-08-22
-144 2025-08-22
-145 2025-08-22
-146 2025-08-22
-147 2025-08-22
-148 2025-08-22
-149 2025-08-22
-150 2025-08-22
-151 2025-08-22
-152 2025-08-28
-153 2025-08-28
-154 2025-08-28
-155 2025-08-28
-156 2025-08-28
-157 2025-08-28
-158 2025-08-28
-159 2025-08-28
-160 2025-08-28
-161 2025-08-28
-162 2025-08-28
-163 2025-08-28
-164 2025-08-28
-165 2025-08-28
-166 2025-08-28
-167 2025-08-28
-168 2025-08-28
-169 2025-08-28
-170 2025-08-28
-171 2025-08-28
-172 2025-08-28
-173 2025-08-28
-174 2025-08-28
-175 2025-08-28
-176 2025-08-28
-177 2025-08-28
-178 2025-08-28
-179 2025-08-30
-180 2025-08-30
-181 2025-08-30
-182 2025-08-30
-183 2025-08-30
-184 2025-08-30
-185 2025-08-30
-186 2025-08-30
-187 2025-08-30
-188 2025-08-30
-189 2025-08-30
-190 2025-08-30
-191 2025-08-30
-192 2025-08-30
-193 2025-08-30
-194 2025-08-30
-195 2025-08-30
-196 2025-08-30</code></pre>
-</div>
 </div>
 <p>One of the main advantages for using pipes, is they can be linked together, passing resulting objects of one operation on to the next pipe and subsequent function. We can see this in operation in the example below where we hand off the isolated “Date” column to the <code>nrow()</code> function to determine number of rows. We will use pipes throughout the course, so you will gradually gain familiarity as you encounter them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"Date"</span>) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"Date"</span>) <span class="sc">|&gt;</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 196</code></pre>
 </div>
@@ -1385,14 +804,12 @@ Odd R Behavior # 1
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">select</span>(Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">select</span>(Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Date
 1 2025-07-26
 2 2025-07-26
-3 2025-07-26
-4 2025-07-26
-5 2025-07-26</code></pre>
+3 2025-07-26</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title=".">
@@ -1413,30 +830,26 @@ Odd R Behavior # 1
 <h3 class="anchored" data-anchor-id="selecting-multiple-columns">Selecting multiple columns</h3>
 <p>Since we are able to select one column, can we select multiple (similar to a [Data[,2:5]] approach in base R)? We can, and they can be positioned anywhere within the data.frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(bid, timepoint, Condition, Tcells, <span class="st">`</span><span class="at">CD8+</span><span class="st">`</span>, <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Subset, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(bid, timepoint, Condition, Tcells, <span class="st">`</span><span class="at">CD8+</span><span class="st">`</span>, <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Subset, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid timepoint Condition    Tcells      CD8+      CD4+
 1 INF0052         0      Ctrl 0.2804264 0.2734826 0.6341164
 2 INF0100         0      Ctrl 0.6748298 0.3357696 0.6119112
-3 INF0100         4      Ctrl 0.6119129 0.2862104 0.6639621
-4 INF0100         9      Ctrl 0.6314431 0.4861231 0.4378944
-5 INF0179         0      Ctrl 0.4396437 0.1950634 0.7392563</code></pre>
+3 INF0100         4      Ctrl 0.6119129 0.2862104 0.6639621</code></pre>
 </div>
 </div>
 <p>You will notice that the order in which we selected the columns will dictate their position in the subsetted data.frame object:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(bid, Tcells, <span class="st">`</span><span class="at">CD8+</span><span class="st">`</span>, <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>, timepoint, Condition, )</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Subset, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(bid, Tcells, <span class="st">`</span><span class="at">CD8+</span><span class="st">`</span>, <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>, timepoint, Condition, )</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Subset, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid    Tcells      CD8+      CD4+ timepoint Condition
 1 INF0052 0.2804264 0.2734826 0.6341164         0      Ctrl
 2 INF0100 0.6748298 0.3357696 0.6119112         0      Ctrl
-3 INF0100 0.6119129 0.2862104 0.6639621         4      Ctrl
-4 INF0100 0.6314431 0.4861231 0.4378944         9      Ctrl
-5 INF0179 0.4396437 0.1950634 0.7392563         0      Ctrl</code></pre>
+3 INF0100 0.6119129 0.2862104 0.6639621         4      Ctrl</code></pre>
 </div>
 </div>
 </section>
@@ -1446,151 +859,111 @@ Odd R Behavior # 1
 <p>Alternatively, we occasionally want to move one column. While we could respecify the location using <code>select()</code>, specifying the names of all the other columns out in a line of code to just to rearrange one does not sound like a good use of time. For this reason, the second <code>dplyr</code> function we will be learning is the <code>relocate()</code> function.</p>
 <p>Looking at our Data object, let’s say we wanted to move the Tcells column from its current location to the second column position (right after the bid column). The line of code to do so would look like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, <span class="at">.after=</span>bid) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, <span class="at">.after=</span>bid) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid    Tcells timepoint Condition       Date infant_sex  ptype    root
 1 INF0052 0.2804264         0      Ctrl 2025-07-26       Male HEU-hi 2098368
 2 INF0100 0.6748298         0      Ctrl 2025-07-26       Male HEU-lo 2020184
 3 INF0100 0.6119129         4      Ctrl 2025-07-26       Male HEU-lo 1155040
-4 INF0100 0.6314431         9      Ctrl 2025-07-26       Male HEU-lo  358624
-5 INF0179 0.4396437         0      Ctrl 2025-07-26       Male     HU 1362216
   singletsFSC singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris
 1     1894070     1666179      1537396 0.5952943    0.8820349 0.8627649
 2     1791890     1697083      1579098 0.9106762    0.9052256 0.8602660
 3     1033320      875465       845446 0.9705765    0.9845400 0.9578793
-4      328624      289327       276289 0.9819573    0.9855070 0.9412615
-5     1206309     1032946       982736 0.9572591    0.9556272 0.8407837
   lymphocytes      live      Dump+     Dump-        Vd2+      Vd2-     Va7.2+
 1   0.6420138 0.9020581 0.21090996 0.6911482 0.008120361 0.9918796 0.01448070
 2   0.2145848 0.8908981 0.06252775 0.8283703 0.007265620 0.9927344 0.01577499
 3   0.7403110 0.8757665 0.20023803 0.6755285 0.004651313 0.9953487 0.01579402
-4   0.6511588 0.9153242 0.21469246 0.7006317 0.011348967 0.9886510 0.01702345
-5   0.7054786 0.8952140 0.33831877 0.5568953 0.004753630 0.9952464 0.01332182
      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
 1 0.9773989 0.6341164 0.3432825 0.2734826 0.06979990       164771
 2 0.9769594 0.6119112 0.3650482 0.3357696 0.02927858       208241
 3 0.9795547 0.6639621 0.3155925 0.2862104 0.02938209       371723
-4 0.9716276 0.4378944 0.5337331 0.4861231 0.04761008       111552
-5 0.9819246 0.7392563 0.2426682 0.1950634 0.04760485       291777
   lymphocytes_count  Monocytes     Debris CD45_count
 1            587573 0.11796509 0.13723513     915203
 2            308583 0.09477437 0.13973396    1438047
-3            607477 0.01545999 0.04212072     820570
-4            176662 0.01449297 0.05873854     271304
-5            663667 0.04437285 0.15921627     940733</code></pre>
+3            607477 0.01545999 0.04212072     820570</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(5) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(3) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Similar to what we saw with <code>select()</code>, this approach can also be used for more than 1 column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, Monocytes, <span class="at">.after=</span>bid) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, Monocytes, <span class="at">.after=</span>bid) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid    Tcells  Monocytes timepoint Condition       Date infant_sex  ptype
 1 INF0052 0.2804264 0.11796509         0      Ctrl 2025-07-26       Male HEU-hi
 2 INF0100 0.6748298 0.09477437         0      Ctrl 2025-07-26       Male HEU-lo
 3 INF0100 0.6119129 0.01545999         4      Ctrl 2025-07-26       Male HEU-lo
-4 INF0100 0.6314431 0.01449297         9      Ctrl 2025-07-26       Male HEU-lo
-5 INF0179 0.4396437 0.04437285         0      Ctrl 2025-07-26       Male     HU
      root singletsFSC singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris
 1 2098368     1894070     1666179      1537396 0.5952943    0.8820349 0.8627649
 2 2020184     1791890     1697083      1579098 0.9106762    0.9052256 0.8602660
 3 1155040     1033320      875465       845446 0.9705765    0.9845400 0.9578793
-4  358624      328624      289327       276289 0.9819573    0.9855070 0.9412615
-5 1362216     1206309     1032946       982736 0.9572591    0.9556272 0.8407837
   lymphocytes      live      Dump+     Dump-        Vd2+      Vd2-     Va7.2+
 1   0.6420138 0.9020581 0.21090996 0.6911482 0.008120361 0.9918796 0.01448070
 2   0.2145848 0.8908981 0.06252775 0.8283703 0.007265620 0.9927344 0.01577499
 3   0.7403110 0.8757665 0.20023803 0.6755285 0.004651313 0.9953487 0.01579402
-4   0.6511588 0.9153242 0.21469246 0.7006317 0.011348967 0.9886510 0.01702345
-5   0.7054786 0.8952140 0.33831877 0.5568953 0.004753630 0.9952464 0.01332182
      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
 1 0.9773989 0.6341164 0.3432825 0.2734826 0.06979990       164771
 2 0.9769594 0.6119112 0.3650482 0.3357696 0.02927858       208241
 3 0.9795547 0.6639621 0.3155925 0.2862104 0.02938209       371723
-4 0.9716276 0.4378944 0.5337331 0.4861231 0.04761008       111552
-5 0.9819246 0.7392563 0.2426682 0.1950634 0.04760485       291777
   lymphocytes_count     Debris CD45_count
 1            587573 0.13723513     915203
 2            308583 0.13973396    1438047
-3            607477 0.04212072     820570
-4            176662 0.05873854     271304
-5            663667 0.15921627     940733</code></pre>
+3            607477 0.04212072     820570</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(5) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(3) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can also modify the argument so that columns are placed before a certain column</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, <span class="at">.before=</span>Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Tcells, <span class="at">.before=</span>Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid timepoint Condition    Tcells       Date infant_sex  ptype    root
 1 INF0052         0      Ctrl 0.2804264 2025-07-26       Male HEU-hi 2098368
 2 INF0100         0      Ctrl 0.6748298 2025-07-26       Male HEU-lo 2020184
 3 INF0100         4      Ctrl 0.6119129 2025-07-26       Male HEU-lo 1155040
-4 INF0100         9      Ctrl 0.6314431 2025-07-26       Male HEU-lo  358624
-5 INF0179         0      Ctrl 0.4396437 2025-07-26       Male     HU 1362216
   singletsFSC singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris
 1     1894070     1666179      1537396 0.5952943    0.8820349 0.8627649
 2     1791890     1697083      1579098 0.9106762    0.9052256 0.8602660
 3     1033320      875465       845446 0.9705765    0.9845400 0.9578793
-4      328624      289327       276289 0.9819573    0.9855070 0.9412615
-5     1206309     1032946       982736 0.9572591    0.9556272 0.8407837
   lymphocytes      live      Dump+     Dump-        Vd2+      Vd2-     Va7.2+
 1   0.6420138 0.9020581 0.21090996 0.6911482 0.008120361 0.9918796 0.01448070
 2   0.2145848 0.8908981 0.06252775 0.8283703 0.007265620 0.9927344 0.01577499
 3   0.7403110 0.8757665 0.20023803 0.6755285 0.004651313 0.9953487 0.01579402
-4   0.6511588 0.9153242 0.21469246 0.7006317 0.011348967 0.9886510 0.01702345
-5   0.7054786 0.8952140 0.33831877 0.5568953 0.004753630 0.9952464 0.01332182
      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
 1 0.9773989 0.6341164 0.3432825 0.2734826 0.06979990       164771
 2 0.9769594 0.6119112 0.3650482 0.3357696 0.02927858       208241
 3 0.9795547 0.6639621 0.3155925 0.2862104 0.02938209       371723
-4 0.9716276 0.4378944 0.5337331 0.4861231 0.04761008       111552
-5 0.9819246 0.7392563 0.2426682 0.1950634 0.04760485       291777
   lymphocytes_count  Monocytes     Debris CD45_count
 1            587573 0.11796509 0.13723513     915203
 2            308583 0.09477437 0.13973396    1438047
-3            607477 0.01545999 0.04212072     820570
-4            176662 0.01449297 0.05873854     271304
-5            663667 0.04437285 0.15921627     940733</code></pre>
+3            607477 0.01545999 0.04212072     820570</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(5) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(3) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And as we might suspect, we could specify a column index location rather than using a column name.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Date, <span class="at">.before=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Date, <span class="at">.before=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Date     bid timepoint Condition infant_sex  ptype    root singletsFSC
 1 2025-07-26 INF0052         0      Ctrl       Male HEU-hi 2098368     1894070
 2 2025-07-26 INF0100         0      Ctrl       Male HEU-lo 2020184     1791890
 3 2025-07-26 INF0100         4      Ctrl       Male HEU-lo 1155040     1033320
-4 2025-07-26 INF0100         9      Ctrl       Male HEU-lo  358624      328624
-5 2025-07-26 INF0179         0      Ctrl       Male     HU 1362216     1206309
   singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
 1     1666179      1537396 0.5952943    0.8820349 0.8627649   0.6420138
 2     1697083      1579098 0.9106762    0.9052256 0.8602660   0.2145848
 3      875465       845446 0.9705765    0.9845400 0.9578793   0.7403110
-4      289327       276289 0.9819573    0.9855070 0.9412615   0.6511588
-5     1032946       982736 0.9572591    0.9556272 0.8407837   0.7054786
        live      Dump+     Dump-    Tcells        Vd2+      Vd2-     Va7.2+
 1 0.9020581 0.21090996 0.6911482 0.2804264 0.008120361 0.9918796 0.01448070
 2 0.8908981 0.06252775 0.8283703 0.6748298 0.007265620 0.9927344 0.01577499
 3 0.8757665 0.20023803 0.6755285 0.6119129 0.004651313 0.9953487 0.01579402
-4 0.9153242 0.21469246 0.7006317 0.6314431 0.011348967 0.9886510 0.01702345
-5 0.8952140 0.33831877 0.5568953 0.4396437 0.004753630 0.9952464 0.01332182
      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
 1 0.9773989 0.6341164 0.3432825 0.2734826 0.06979990       164771
 2 0.9769594 0.6119112 0.3650482 0.3357696 0.02927858       208241
 3 0.9795547 0.6639621 0.3155925 0.2862104 0.02938209       371723
-4 0.9716276 0.4378944 0.5337331 0.4861231 0.04761008       111552
-5 0.9819246 0.7392563 0.2426682 0.1950634 0.04760485       291777
   lymphocytes_count  Monocytes     Debris CD45_count
 1            587573 0.11796509 0.13723513     915203
 2            308583 0.09477437 0.13973396    1438047
-3            607477 0.01545999 0.04212072     820570
-4            176662 0.01449297 0.05873854     271304
-5            663667 0.04437285 0.15921627     940733</code></pre>
+3            607477 0.01545999 0.04212072     820570</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(5) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># |&gt; head(3) is used only to make the website output visualization manageable :D</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="rename" class="level2">
@@ -1598,18 +971,18 @@ Odd R Behavior # 1
 <p>At this point, we are able to both move and select particular columns, allowing us to rearrange and subset a larger data.frame object however we want it to appear. However, as we encountered, some of the names contain special characters and spaces, requiring use of tick marks (``) to avoid issues. How can we change a column name?</p>
 <p>In base R, we could change individual column names by assigning a new value with the assignment arrow to the corresponding column name index. For example, looking at our Subset object, wen could rename CD8+ as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "bid"       "Tcells"    "CD8+"      "CD4+"      "timepoint" "Condition"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "CD8+"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"CD8Positive"</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">"CD8Positive"</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "bid"         "Tcells"      "CD8Positive" "CD4+"        "timepoint"  
 [6] "Condition"  </code></pre>
@@ -1617,8 +990,8 @@ Odd R Behavior # 1
 </div>
 <p>With the tidyverse, we can use the <code>rename()</code> function which removes the need to look up the column index number. The way we write the argument is placing within the parenthesis the old name to the right of the equals sign, with the new name to the left</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>Renamed <span class="ot">&lt;-</span> Subset <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">CD4_Positive =</span> <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Renamed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>Renamed <span class="ot">&lt;-</span> Subset <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">CD4_Positive =</span> <span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Renamed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "bid"          "Tcells"       "CD8Positive"  "CD4_Positive" "timepoint"   
 [6] "Condition"   </code></pre>
@@ -1626,8 +999,8 @@ Odd R Behavior # 1
 </div>
 <p>If we wanted to rename multiple column names at once, we would just need to include a comma between the individual rename arguments within the parenthesis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>Renamed_Multiple <span class="ot">&lt;-</span> Subset <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">specimen =</span> bid, <span class="at">timepoint_months =</span> timepoint, <span class="at">stimulation =</span> Condition, <span class="at">CD4Positive=</span><span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Renamed_Multiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>Renamed_Multiple <span class="ot">&lt;-</span> Subset <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">specimen =</span> bid, <span class="at">timepoint_months =</span> timepoint, <span class="at">stimulation =</span> Condition, <span class="at">CD4Positive=</span><span class="st">`</span><span class="at">CD4+</span><span class="st">`</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Renamed_Multiple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "specimen"         "Tcells"           "CD8Positive"      "CD4Positive"     
 [5] "timepoint_months" "stimulation"     </code></pre>
@@ -1638,15 +1011,14 @@ Odd R Behavior # 1
 <h2 class="anchored" data-anchor-id="pull">pull</h2>
 <p>Sometimes, we may want to retrieve individual values present in a column, to use within either a vector or a list. We can do this using the <code>pull()</code> function, which will retrieve the column contents and strip the column formatting</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Date) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"
- [6] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"</code></pre>
+<pre><code>[1] "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26" "2025-07-26"</code></pre>
 </div>
 </div>
 <p>This can be useful when we are doing data exploration, and trying to determine how many unique variants might be present. For example, if we wanted to see what days individual samples were acquired, we could <code>pull()</code> the data and pass it to the <code>unique()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Date) <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Date) <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "2025-07-26" "2025-07-29" "2025-07-31" "2025-08-05" "2025-08-07"
 [6] "2025-08-22" "2025-08-28" "2025-08-30"</code></pre>
@@ -1658,7 +1030,7 @@ Odd R Behavior # 1
 <p>So far, we have been working with <code>dplyr</code> functions primarily used when working with and subsetting columns (including <code>select()</code>, <code>pull()</code>, <code>rename()</code> and <code>relocate()</code>). What if we wanted to work with rows of a data.frame? This is where the <code>filter()</code> function is used.</p>
 <p>The Condition column in this Dataset appears to be indicating whether the samples were stimulated. Let’s see how many unique values are contained within that column</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Condition) <span class="sc">|&gt;</span> <span class="fu">unique</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">pull</span>(Condition) <span class="sc">|&gt;</span> <span class="fu">unique</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ctrl" "PPD"  "SEB" </code></pre>
 </div>
@@ -1666,8 +1038,8 @@ Odd R Behavior # 1
 <p>In the case of this dataset, looks like the .fcs files where treated with either left alone, treated with <a href="https://en.wikipedia.org/wiki/Tuberculin">PPD (Purified Protein Derrivative)</a> or <a href="https://en.wikipedia.org/wiki/Enterotoxin_type_B">SEB</a>. What if we wanted to subset only those treated with PPD?</p>
 <p>Within <code>filter()</code>, we would specify the column name as the first argument, and ask that only values equal to (==) “PPD” be returned. Notice in this case, “” are needed, as we are asking for a matching character value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>PPDOnly <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">==</span> <span class="st">"PPD"</span>)</span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PPDOnly, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>PPDOnly <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">==</span> <span class="st">"PPD"</span>)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(PPDOnly, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
 1 INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
@@ -1703,209 +1075,134 @@ Odd R Behavior # 1
 </div>
 <p>While this works, using “==” to match can glitch, especially with character values. Using the %in% operator is a better way of identifying and extracting only the rows whose Condition column contains “PPD”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="st">"PPD"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="st">"PPD"</span>) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
-1  INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
-2  INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
-3  INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
-4  INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
-5  INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
-6  INF0179         4       PPD 2025-07-26       Male     HU 1240984     1089933
-7  INF0179         9       PPD 2025-07-26       Male     HU 1705960     1492142
-8  INF0186         4       PPD 2025-07-26     Female HEU-hi  848584      759606
-9  INF0186         9       PPD 2025-07-26     Female HEU-hi 1425416     1259825
-10 INF0134         0       PPD 2025-07-29     Female HEU-lo 1245024     1126248
-   singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
-1      1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
-2      1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
-3       796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
-4       626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
-5      1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
-6       868877       814909 0.9855947    0.9541417 0.9400824   0.7303074
-7      1163543      1107878 0.9820919    0.9816909 0.9681656   0.7933252
-8       648405       607514 0.9824778    0.9539480 0.9250170   0.6720872
-9      1089955      1014266 0.9771490    0.9552573 0.9137615   0.6332438
-10      993895       896183 0.7915660    0.8042298 0.7899781   0.5924868
-        live      Dump+     Dump-    Tcells        Vd2+      Vd2-     Va7.2+
-1  0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.01507057
-2  0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.01671801
-3  0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.01609790
-4  0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.01855298
-5  0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.01297237
-6  0.9602599 0.34357211 0.6166878 0.5654655 0.004320429 0.9956796 0.01266884
-7  0.9344566 0.24759143 0.6868651 0.6687319 0.002733755 0.9972662 0.01330324
-8  0.8622229 0.32641070 0.5358122 0.4757720 0.009483639 0.9905164 0.04352519
-9  0.8793039 0.23863251 0.6406714 0.5818617 0.018224039 0.9817760 0.03738187
-10 0.9003481 0.15485733 0.7454908 0.3314561 0.009453601 0.9905464 0.02587717
-      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
-1  0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
-2  0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
-3  0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
-4  0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
-5  0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
-6  0.9830107 0.6318771 0.3511336 0.3177460 0.03338760       331680
-7  0.9839630 0.7016361 0.2823269 0.2559335 0.02639338       577228
-8  0.9469912 0.5309109 0.4160803 0.3912185 0.02486181       190855
-9  0.9443941 0.5033806 0.4410135 0.4213381 0.01967539       365177
-10 0.9646692 0.6964224 0.2682468 0.2260394 0.04220742       139312
-   lymphocytes_count  Monocytes     Debris CD45_count
-1             652155 0.13801632 0.15703150    1017713
-2             314717 0.07480391 0.12281107    1447451
-3             544883 0.01512811 0.04439511     745037
-4             366784 0.01578611 0.18769586     589379
-5             663169 0.04243146 0.08655621     947858
-6             586561 0.04585829 0.05991758     803170
-7             863168 0.01830910 0.03183437    1088038
-8             401148 0.04605198 0.07498295     596869
-9             627601 0.04474270 0.08623847     991089
-10            420303 0.19577016 0.21002188     709388</code></pre>
+<pre><code>      bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
+1 INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
+2 INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
+3 INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
+4 INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
+5 INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
+  singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
+1     1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
+2     1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
+3      796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
+4      626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
+5     1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
+       live      Dump+     Dump-    Tcells        Vd2+      Vd2-     Va7.2+
+1 0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.01507057
+2 0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.01671801
+3 0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.01609790
+4 0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.01855298
+5 0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.01297237
+     Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
+1 0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
+2 0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
+3 0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
+4 0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
+5 0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
+  lymphocytes_count  Monocytes     Debris CD45_count
+1            652155 0.13801632 0.15703150    1017713
+2            314717 0.07480391 0.12281107    1447451
+3            544883 0.01512811 0.04439511     745037
+4            366784 0.01578611 0.18769586     589379
+5            663169 0.04243146 0.08655621     947858</code></pre>
 </div>
 </div>
 <p>Similar to what we saw for <code>select()</code>, we can grab rows that contain various values at once. We would just need to modify the second part of the argument. If we wanted to grab rows whose Condition column contained either PPD or SEB, we would need to provide that argument as a vector, placing both within <code>c()</code>/</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PPD"</span>, <span class="st">"SEB"</span>)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"PPD"</span>, <span class="st">"SEB"</span>)) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
-1  INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
-2  INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
-3  INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
-4  INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
-5  INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
-6  INF0179         4       PPD 2025-07-26       Male     HU 1240984     1089933
-7  INF0179         9       PPD 2025-07-26       Male     HU 1705960     1492142
-8  INF0186         4       PPD 2025-07-26     Female HEU-hi  848584      759606
-9  INF0186         9       PPD 2025-07-26     Female HEU-hi 1425416     1259825
-10 INF0052         0       SEB 2025-07-26       Male HEU-hi 2523776     2282292
-   singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
-1      1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
-2      1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
-3       796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
-4       626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
-5      1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
-6       868877       814909 0.9855947    0.9541417 0.9400824   0.7303074
-7      1163543      1107878 0.9820919    0.9816909 0.9681656   0.7933252
-8       648405       607514 0.9824778    0.9539480 0.9250170   0.6720872
-9      1089955      1014266 0.9771490    0.9552573 0.9137615   0.6332438
-10     2041563      1889418 0.5783591    0.8878072 0.8670150   0.6718563
-        live      Dump+     Dump-    Tcells        Vd2+      Vd2-      Va7.2+
-1  0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.015070567
-2  0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.016718006
-3  0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.016097899
-4  0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.018552985
-5  0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.012972375
-6  0.9602599 0.34357211 0.6166878 0.5654655 0.004320429 0.9956796 0.012668837
-7  0.9344566 0.24759143 0.6868651 0.6687319 0.002733755 0.9972662 0.013303235
-8  0.8622229 0.32641070 0.5358122 0.4757720 0.009483639 0.9905164 0.043525189
-9  0.8793039 0.23863251 0.6406714 0.5818617 0.018224039 0.9817760 0.037381872
-10 0.9115652 0.23344716 0.6781180 0.2741661 0.009225633 0.9907744 0.008420812
-      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
-1  0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
-2  0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
-3  0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
-4  0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
-5  0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
-6  0.9830107 0.6318771 0.3511336 0.3177460 0.03338760       331680
-7  0.9839630 0.7016361 0.2823269 0.2559335 0.02639338       577228
-8  0.9469912 0.5309109 0.4160803 0.3912185 0.02486181       190855
-9  0.9443941 0.5033806 0.4410135 0.4213381 0.01967539       365177
-10 0.9823536 0.6083254 0.3740281 0.2811756 0.09285249       201287
-   lymphocytes_count  Monocytes     Debris CD45_count
-1             652155 0.13801632 0.15703150    1017713
-2             314717 0.07480391 0.12281107    1447451
-3             544883 0.01512811 0.04439511     745037
-4             366784 0.01578611 0.18769586     589379
-5             663169 0.04243146 0.08655621     947858
-6             586561 0.04585829 0.05991758     803170
-7             863168 0.01830910 0.03183437    1088038
-8             401148 0.04605198 0.07498295     596869
-9             627601 0.04474270 0.08623847     991089
-10            734179 0.11219277 0.13298504    1092762</code></pre>
+<pre><code>      bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
+1 INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
+2 INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
+3 INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
+4 INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
+5 INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
+  singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
+1     1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
+2     1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
+3      796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
+4      626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
+5     1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
+       live      Dump+     Dump-    Tcells        Vd2+      Vd2-     Va7.2+
+1 0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.01507057
+2 0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.01671801
+3 0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.01609790
+4 0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.01855298
+5 0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.01297237
+     Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
+1 0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
+2 0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
+3 0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
+4 0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
+5 0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
+  lymphocytes_count  Monocytes     Debris CD45_count
+1            652155 0.13801632 0.15703150    1017713
+2            314717 0.07480391 0.12281107    1447451
+3            544883 0.01512811 0.04439511     745037
+4            366784 0.01578611 0.18769586     589379
+5            663169 0.04243146 0.08655621     947858</code></pre>
 </div>
 </div>
 <p>Alternatively, we could have set up the vector externally, and then provided it to <code>filter()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>TheseConditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PPD"</span>, <span class="st">"SEB"</span>)</span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> TheseConditions) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>TheseConditions <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"PPD"</span>, <span class="st">"SEB"</span>)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> TheseConditions) <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
-1  INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
-2  INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
-3  INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
-4  INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
-5  INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
-6  INF0179         4       PPD 2025-07-26       Male     HU 1240984     1089933
-7  INF0179         9       PPD 2025-07-26       Male     HU 1705960     1492142
-8  INF0186         4       PPD 2025-07-26     Female HEU-hi  848584      759606
-9  INF0186         9       PPD 2025-07-26     Female HEU-hi 1425416     1259825
-10 INF0052         0       SEB 2025-07-26       Male HEU-hi 2523776     2282292
-   singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
-1      1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
-2      1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
-3       796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
-4       626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
-5      1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
-6       868877       814909 0.9855947    0.9541417 0.9400824   0.7303074
-7      1163543      1107878 0.9820919    0.9816909 0.9681656   0.7933252
-8       648405       607514 0.9824778    0.9539480 0.9250170   0.6720872
-9      1089955      1014266 0.9771490    0.9552573 0.9137615   0.6332438
-10     2041563      1889418 0.5783591    0.8878072 0.8670150   0.6718563
-        live      Dump+     Dump-    Tcells        Vd2+      Vd2-      Va7.2+
-1  0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.015070567
-2  0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.016718006
-3  0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.016097899
-4  0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.018552985
-5  0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.012972375
-6  0.9602599 0.34357211 0.6166878 0.5654655 0.004320429 0.9956796 0.012668837
-7  0.9344566 0.24759143 0.6868651 0.6687319 0.002733755 0.9972662 0.013303235
-8  0.8622229 0.32641070 0.5358122 0.4757720 0.009483639 0.9905164 0.043525189
-9  0.8793039 0.23863251 0.6406714 0.5818617 0.018224039 0.9817760 0.037381872
-10 0.9115652 0.23344716 0.6781180 0.2741661 0.009225633 0.9907744 0.008420812
-      Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
-1  0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
-2  0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
-3  0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
-4  0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
-5  0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
-6  0.9830107 0.6318771 0.3511336 0.3177460 0.03338760       331680
-7  0.9839630 0.7016361 0.2823269 0.2559335 0.02639338       577228
-8  0.9469912 0.5309109 0.4160803 0.3912185 0.02486181       190855
-9  0.9443941 0.5033806 0.4410135 0.4213381 0.01967539       365177
-10 0.9823536 0.6083254 0.3740281 0.2811756 0.09285249       201287
-   lymphocytes_count  Monocytes     Debris CD45_count
-1             652155 0.13801632 0.15703150    1017713
-2             314717 0.07480391 0.12281107    1447451
-3             544883 0.01512811 0.04439511     745037
-4             366784 0.01578611 0.18769586     589379
-5             663169 0.04243146 0.08655621     947858
-6             586561 0.04585829 0.05991758     803170
-7             863168 0.01830910 0.03183437    1088038
-8             401148 0.04605198 0.07498295     596869
-9             627601 0.04474270 0.08623847     991089
-10            734179 0.11219277 0.13298504    1092762</code></pre>
+<pre><code>      bid timepoint Condition       Date infant_sex  ptype    root singletsFSC
+1 INF0052         0       PPD 2025-07-26       Male HEU-hi 2363512     2136616
+2 INF0100         0       PPD 2025-07-26       Male HEU-lo 2049112     1821676
+3 INF0100         4       PPD 2025-07-26       Male HEU-lo 1063496      946587
+4 INF0100         9       PPD 2025-07-26       Male HEU-lo  788368      714198
+5 INF0179         0       PPD 2025-07-26       Male     HU 1380336     1242311
+  singletsSSC singletsSSCB      CD45 NotMonocytes nonDebris lymphocytes
+1     1875394      1732620 0.5873838    0.8619837 0.8429685   0.6408044
+2     1717636      1597085 0.9063081    0.9251961 0.8771889   0.2174284
+3      796056       767297 0.9709891    0.9848719 0.9556049   0.7313503
+4      626387       600011 0.9822803    0.9842139 0.8123041   0.6223228
+5     1047081      1000877 0.9470275    0.9575685 0.9134438   0.6996502
+       live      Dump+     Dump-    Tcells        Vd2+      Vd2-     Va7.2+
+1 0.9009254 0.20743228 0.6934931 0.2835676 0.007408209 0.9925918 0.01507057
+2 0.8929673 0.06181426 0.8311531 0.6735798 0.007137230 0.9928628 0.01671801
+3 0.8782307 0.20727202 0.6709587 0.5989873 0.005254643 0.9947454 0.01609790
+4 0.9566639 0.23164587 0.7250180 0.6489405 0.011935922 0.9880641 0.01855298
+5 0.8856898 0.33186111 0.5538287 0.4441538 0.004382972 0.9956170 0.01297237
+     Va7.2-      CD4+      CD4-      CD8+       CD8- Tcells_count
+1 0.9775212 0.6340345 0.3434867 0.2744119 0.06907479       184930
+2 0.9761448 0.6145707 0.3615741 0.3312279 0.03034620       211987
+3 0.9786475 0.6559480 0.3226994 0.2912084 0.03149109       326378
+4 0.9695111 0.4306889 0.5388222 0.4908558 0.04796636       238021
+5 0.9826447 0.7499194 0.2327253 0.1850897 0.04763554       294549
+  lymphocytes_count  Monocytes     Debris CD45_count
+1            652155 0.13801632 0.15703150    1017713
+2            314717 0.07480391 0.12281107    1447451
+3            544883 0.01512811 0.04439511     745037
+4            366784 0.01578611 0.18769586     589379
+5            663169 0.04243146 0.08655621     947858</code></pre>
 </div>
 </div>
 <p>While this works when we have a limited number of variant condition values, what if had many more but only wanted to exclude one value? As we saw when learning about <a href="../../course/02_FilePaths/index.html">Conditionals</a>, when we add a ! in front of a logical value, we get the opposite logical value returned</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>IsThisASpectralInstrument <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>IsThisASpectralInstrument</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>IsThisASpectralInstrument <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>IsThisASpectralInstrument</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>In the context of the <code>dplyr</code> package, we can use ! within the <code>filter()</code> to remove rows that contain a certain value</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span>Condition <span class="sc">%in%</span> <span class="st">"SEB"</span>)</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>Subset <span class="sc">|&gt;</span> <span class="fu">pull</span>(Condition) <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span>Condition <span class="sc">%in%</span> <span class="st">"SEB"</span>)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>Subset <span class="sc">|&gt;</span> <span class="fu">pull</span>(Condition) <span class="sc">|&gt;</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ctrl" "PPD" </code></pre>
 </div>
 </div>
 <p>Likewise, we can also use it with the <code>select()</code> to exclude columns we don’t want to include</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">!</span>timepoint)</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>Subset[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>Subset <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">!</span>timepoint)</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>Subset[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      bid Condition       Date infant_sex  ptype    root singletsFSC
 1 INF0052      Ctrl 2025-07-26       Male HEU-hi 2098368     1894070
@@ -1935,12 +1232,12 @@ Odd R Behavior # 1
 <p>As we can see, with just these handful of functions, we have the building blocks to rearrange and subset a larger data.frame into a format that we prefer. But what if we wanted to alter the content of a column, or add new columns to an existing data.frame? This is where the <code>mutate()</code> function can be used.</p>
 <p>Let’s start by slimming down our current Data to a smaller workable example, highlighting the functions and pipes we learned about today</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="st">"Ctrl"</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(timepoint <span class="sc">%in%</span> <span class="st">"0"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(bid, timepoint, Condition, Date, Tcells_count, CD45_count) <span class="sc">|&gt;</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">specimen=</span>bid, <span class="at">condition=</span>Condition) <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Date, <span class="at">.after=</span>specimen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> Data <span class="sc">|&gt;</span> <span class="fu">filter</span>(Condition <span class="sc">%in%</span> <span class="st">"Ctrl"</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(timepoint <span class="sc">%in%</span> <span class="st">"0"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(bid, timepoint, Condition, Date, Tcells_count, CD45_count) <span class="sc">|&gt;</span></span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">specimen=</span>bid, <span class="at">condition=</span>Condition) <span class="sc">|&gt;</span> <span class="fu">relocate</span>(Date, <span class="at">.after=</span>specimen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>TidyData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>TidyData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   specimen       Date timepoint condition Tcells_count CD45_count
 1   INF0052 2025-07-26         0      Ctrl       164771     915203
@@ -1970,8 +1267,8 @@ Odd R Behavior # 1
 </div>
 <p>The <code>mutate()</code> function can be used to modify existing columns, as well as to create new ones. For example, let’s derrive the proportion of T cells from the overall CD45 gate. To do so, within the parenthesis, we would specify a new column name, and then divide the original columns:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Tcells_ProportionCD45 =</span> Tcells_count <span class="sc">/</span> CD45_count)</span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>TidyData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">Tcells_ProportionCD45 =</span> Tcells_count <span class="sc">/</span> CD45_count)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>TidyData</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   specimen       Date timepoint condition Tcells_count CD45_count
 1   INF0052 2025-07-26         0      Ctrl       164771     915203
@@ -2025,8 +1322,8 @@ Odd R Behavior # 1
 </div>
 <p>We can see that we have many significant digits being returned. Let’s round this new column to 2 significant digits by applying the <code>round()</code> function</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">TcellsRounded =</span> <span class="fu">round</span>(Tcells_ProportionCD45, <span class="dv">2</span>))</span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>TidyData </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">TcellsRounded =</span> <span class="fu">round</span>(Tcells_ProportionCD45, <span class="dv">2</span>))</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>TidyData </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   specimen       Date timepoint condition Tcells_count CD45_count
 1   INF0052 2025-07-26         0      Ctrl       164771     915203
@@ -2083,11 +1380,11 @@ Odd R Behavior # 1
 <h2 class="anchored" data-anchor-id="arrange">arrange</h2>
 <p>And while we are here, let’s rearrange the rows so that they are descending based on the Tcell proportion. We can use this by using the <code>desc()</code> and <code>arrange()</code> functions from <code>dplyr</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(TcellsRounded))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="ot">&lt;-</span> TidyData <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(TcellsRounded))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And let’s go ahead and <code>filter()</code> and identify the specimens that had more than 30% T cells as part of the overall CD45 gate (context, these samples were Cord Blood):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="sc">|&gt;</span> <span class="fu">filter</span>(TcellsRounded <span class="sc">&gt;</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="sc">|&gt;</span> <span class="fu">filter</span>(TcellsRounded <span class="sc">&gt;</span> <span class="fl">0.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  specimen       Date timepoint condition Tcells_count CD45_count
 1  INF0032 2025-08-05         0      Ctrl       361034     753064
@@ -2103,22 +1400,22 @@ Odd R Behavior # 1
 </div>
 <p>Which is we had wanted to just retrieve the specimen IDs, we could add <code>pull()</code> after a new pipe argument.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="sc">|&gt;</span> <span class="fu">filter</span>(TcellsRounded <span class="sc">&gt;</span> <span class="fl">0.3</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(specimen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>TidyData <span class="sc">|&gt;</span> <span class="fu">filter</span>(TcellsRounded <span class="sc">&gt;</span> <span class="fl">0.3</span>) <span class="sc">|&gt;</span> <span class="fu">pull</span>(specimen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "INF0032" "INF0159" "INF0179" "INF0166"</code></pre>
 </div>
 </div>
-<p>And finally, since I may want to send the data to a supervisor, let’s go ahead and export this “tidyed” version of our data.frame out to it’s own .fcs file. Working within our project folder, this would look like this:</p>
+<p>And finally, since I may want to send the data to a supervisor, let’s go ahead and export this “tidyed” version of our data.frame out to it’s own .csv file. Working within our project folder, this would look like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>NewName <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"MyNewDataset"</span>, <span class="st">".csv"</span>)</span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>StorageLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, NewName)</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>StorageLocation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>NewName <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"MyNewDataset"</span>, <span class="st">".csv"</span>)</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>StorageLocation <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"data"</span>, NewName)</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>StorageLocation</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data/MyNewDataset.csv"</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(TidyData, StorageLocation, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(TidyData, StorageLocation, <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -2591,8 +1888,8 @@ Problem 3
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../Schedule.html" class="pagination-link" aria-label="Cytometry Core">
-        <span class="nav-page-text">Cytometry Core</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../course/05_GatingSets/index.html" class="pagination-link" aria-label="05 - Gating Sets">
+        <span class="nav-page-text">05 - Gating Sets</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
